@@ -1,0 +1,961 @@
+[{
+        "nb": "23889",
+        "name": "Pedro Azenha",
+        "avatar": "/março_2018/nb23889.jpg",
+        "email": "nb23889@novabase.pt",
+        "hash": "07101992",
+
+
+        "businessUnit": "GTE",
+        "mbti": "ENTP",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 7,
+            "communication": 7,
+            "problemSolving": 8,
+            "management": 8,
+            "android": 2
+        }],
+        "score": []
+    },
+    {
+        "nb": "23810",
+        "name": "Gil Caldeira",
+        "avatar": "/março 2018/nb23810.jpg",
+        "email": "nb23810@novabase.pt",
+        "hash": "26011997",
+
+        "businessUnit": "GTE",
+        "mbti": "ISTJ",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 7,
+            "communication": 7,
+            "problemSolving": 7,
+            "management": 7,
+            "android": 4
+        }],
+        "score": []
+    },
+    {
+        "nb": "23665",
+        "name": "Duarte Clara ",
+        "avatar": "/março 2018/nb23665.jpg",
+        "email": "nb23665@novabase.pt",
+        "hash": "21121991",
+
+
+
+        "businessUnit": "FSI",
+        "mbti": "INTP",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 7,
+            "communication": 7,
+            "problemSolving": 5,
+            "management": 6,
+            "android": 3
+        }],
+        "score": []
+    },
+    {
+        "nb": "23870",
+        "name": "Luís Videira Santos",
+        "avatar": "/março 2018/nb23870.jpg",
+        "email": "nb23870@novabase.pt",
+        "hash": "17091989",
+
+
+
+        "businessUnit": "CF",
+        "mbti": "ESTJ",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 7,
+            "communication": 6,
+            "problemSolving": 7,
+            "management": 5,
+            "android": 2
+        }],
+        "score": []
+    },
+    {
+        "nb": "23660",
+        "name": "Daniel Sobral",
+        "avatar": "/março 2018/nb23660.jpg",
+        "email": "nb23660@novabase.pt",
+        "hash": "22101989",
+
+
+
+        "businessUnit": "FSI",
+        "mbti": "ISTP",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 7,
+            "communication": 8,
+            "problemSolving": 8,
+            "management": 5,
+            "android": 3
+        }],
+        "score": []
+    },
+    {
+        "nb": "23905",
+        "name": "André Ferreirinha",
+        "avatar": "/março 2018/nb23905.jpg",
+        "email": "nb23905@novabase.pt",
+        "hash": "06081992",
+        "businessUnit": "CF",
+        "mbti": "ESTJ",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 7,
+            "communication": 7,
+            "problemSolving": 8,
+            "management": 4,
+            "android": 5
+        }],
+        "score": []
+    },
+    {
+        "nb": "23807",
+        "name": "David Vieira Marques",
+        "avatar": "/março 2018/nb23807.jpg",
+        "email": "nb23807@novabase.pt",
+        "hash": "08121991",
+
+
+
+        "businessUnit": "CF",
+        "mbti": "ISTJ",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 6,
+            "communication": 5,
+            "problemSolving": 6,
+            "management": 3,
+            "android": 3
+        }],
+        "score": []
+    },
+    {
+        "nb": "23823",
+        "name": "Sara Barros",
+        "avatar": "/março 2018/nb23823.jpg",
+        "email": "nb23823@novabase.pt",
+        "hash": "10031994",
+
+
+
+        "businessUnit": "GTE",
+        "mbti": "ENTP",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 7,
+            "communication": 6,
+            "problemSolving": 8,
+            "management": 7,
+            "android": 1
+        }],
+        "score": []
+    },
+    {
+        "nb": "23947",
+        "name": "Pedro Miguel Martins ",
+        "avatar": "/março 2018/nb23947.jpg",
+        "email": "nb23947@novabase.pt",
+        "hash": "04071992",
+
+
+
+        "businessUnit": "GTE",
+        "mbti": "ISTJ",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 7,
+            "communication": 6,
+            "problemSolving": 7,
+            "management": 7,
+            "android": 1
+        }],
+        "score": []
+    },
+    {
+        "nb": "23815",
+        "name": "Hugo de Castro Santos",
+        "avatar": "/março 2018/nb23815.jpg",
+        "email": "nb23815@novabase.pt",
+        "hash": "06091993",
+
+
+
+        "businessUnit": "GTE",
+        "mbti": "ISTJ",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 7,
+            "communication": 5,
+            "problemSolving": 7,
+            "management": 5,
+            "android": 3
+        }],
+        "score": []
+    },
+    {
+        "nb": "23787",
+        "name": "Cristiano Castela",
+        "avatar": "/março 2018/nb23787.jpg",
+        "email": "nb23787@novabase.pt",
+        "hash": "05031994",
+
+
+
+        "businessUnit": "CF",
+        "mbti": "ESTJ",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 7,
+            "communication": 6,
+            "problemSolving": 8,
+            "management": 7,
+            "android": 2
+        }],
+        "score": []
+    },
+    {
+        "nb": "23887",
+        "name": "Mário Viegas",
+        "avatar": "/março 2018/nb23887.jpg",
+        "email": "nb23887@novabase.pt",
+        "hash": "05091992",
+
+
+
+        "businessUnit": "GTE",
+        "mbti": "ISTJ",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 6,
+            "communication": 5,
+            "problemSolving": 7,
+            "management": 5,
+            "android": 6
+        }],
+        "score": []
+    },
+    {
+        "nb": "23919",
+        "name": "Nélson Silva",
+        "avatar": "/março 2018/nb23919.jpg",
+        "email": "nb23919@novabase.pt",
+        "hash": "09101993",
+
+
+
+        "businessUnit": "GTE",
+        "mbti": "ENTP",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 8,
+            "communication": 7,
+            "problemSolving": 7,
+            "management": 7,
+            "android": 3
+        }],
+        "score": []
+    },
+    {
+        "nb": "23882",
+        "name": "Pedro Rocha",
+        "avatar": "/março 2018/nb23882.jpg",
+        "email": "nb23882@novabase.pt",
+        "hash": "01031993",
+
+
+
+        "businessUnit": "FSI",
+        "mbti": "ESTP",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 8,
+            "communication": 7,
+            "problemSolving": 7,
+            "management": 7,
+            "android": 2
+        }],
+        "score": []
+    },
+    {
+        "nb": "23971",
+        "name": "António Maduro",
+        "avatar": "/março 2018/nb23971.jpg",
+        "email": "nb23971@novabase.pt",
+        "hash": "30051992",
+
+
+
+        "businessUnit": "GTE",
+        "mbti": "ISTJ",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 6,
+            "communication": 6,
+            "problemSolving": 8,
+            "management": 8,
+            "android": 1
+        }],
+        "score": []
+    },
+    {
+        "nb": "23936",
+        "name": "Sara Anjo",
+        "avatar": "/março 2018/nb23936.jpg",
+        "email": "nb23936@novabase.pt",
+        "hash": "03011993",
+
+
+
+        "businessUnit": "CF",
+        "mbti": "ESTJ",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 7,
+            "communication": 8,
+            "problemSolving": 9,
+            "management": 7,
+            "android": 4
+        }],
+        "score": []
+    },
+    {
+        "nb": "23950",
+        "name": "Sérgio Neves Pinheiro",
+        "avatar": "/março 2018/nb23950.jpg",
+        "email": "nb23950@novabase.pt",
+        "hash": "07101988",
+
+
+
+        "businessUnit": "CF",
+        "mbti": "ENTP",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 7,
+            "communication": 7,
+            "problemSolving": 6,
+            "management": 6,
+            "android": 4
+        }],
+        "score": []
+    },
+    {
+        "nb": "23999",
+        "name": "Diogo Rocha",
+        "avatar": "/março 2018/nb23999.jpg",
+        "email": "nb23999@novabase.pt",
+        "hash": "13071994",
+
+
+
+        "businessUnit": "GTE",
+        "mbti": "INTJ",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 6,
+            "communication": 6,
+            "problemSolving": 7,
+            "management": 7,
+            "android": 2
+        }],
+        "score": []
+    },
+    {
+        "nb": "23960",
+        "name": "Fábio Carvalho",
+        "avatar": "/março 2018/nb23960.jpg",
+        "email": "nb23960@novabase.pt",
+        "hash": "27021989",
+
+
+
+        "businessUnit": "CF",
+        "mbti": "ISTJ",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 8,
+            "communication": 7,
+            "problemSolving": 7,
+            "management": 5,
+            "android": 2
+        }],
+        "score": []
+    },
+    {
+        "nb": "23969",
+        "name": "Filipe Cerqueira",
+        "avatar": "/março 2018/nb23969.jpg",
+        "email": "nb23969@novabase.pt",
+        "hash": "27011994",
+
+
+
+        "businessUnit": "GTE",
+        "mbti": "ISTJ",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 6,
+            "communication": 6,
+            "problemSolving": 7,
+            "management": 7,
+            "android": 8
+        }],
+        "score": []
+    },
+    {
+        "nb": "23980",
+        "name": "Rodrigo Pombo",
+        "avatar": "/março 2018/nb23980.jpg",
+        "email": "nb23980@novabase.pt",
+        "hash": "04061996",
+
+
+
+        "businessUnit": "CF",
+        "mbti": "ENTJ",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 7,
+            "communication": 8,
+            "problemSolving": 6,
+            "management": 6,
+            "android": 3
+        }],
+        "score": []
+    },
+    {
+        "nb": "23978",
+        "name": "Ricardo Pedrosa",
+        "avatar": "/março 2018/nb23978.jpg",
+        "email": "nb23978@novabase.pt",
+        "hash": "11081991",
+
+
+
+        "businessUnit": "GTE",
+        "mbti": "ENTJ",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 8,
+            "communication": 8,
+            "problemSolving": 7,
+            "management": 7,
+            "android": 1
+        }],
+        "score": []
+    },
+    {
+        "nb": "23998",
+        "name": "Rui Sanches",
+        "avatar": "/março 2018/nb23998.jpg",
+        "email": "nb23998@novabase.pt",
+        "hash": "22051994",
+
+
+
+        "businessUnit": "GTE",
+        "mbti": "ISTJ",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 6,
+            "communication": 6,
+            "problemSolving": 7,
+            "management": 6,
+            "android": 4
+        }],
+        "score": []
+    },
+    {
+        "nb": "23996",
+        "name": "Pedro Sanches",
+        "avatar": "/março 2018/nb23996.jpg",
+        "email": "nb23996@novabase.pt",
+        "hash": "22051994",
+
+
+
+        "businessUnit": "CF",
+        "mbti": "ISTJ",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 6,
+            "communication": 6,
+            "problemSolving": 7,
+            "management": 6,
+            "android": 7
+        }],
+        "score": []
+    },
+    {
+        "nb": "24030",
+        "name": "Sara Rodrigues",
+        "avatar": "/março 2018/nb24030.jpg",
+        "email": "nb24030@novabase.pt",
+        "hash": "10111993",
+
+
+
+        "businessUnit": "CF",
+        "mbti": "ESTJ",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 7,
+            "communication": 9,
+            "problemSolving": 7,
+            "management": 4,
+            "android": 7
+        }],
+        "score": []
+    },
+    {
+        "nb": "24021",
+        "name": "Diogo Silva",
+        "avatar": "/março 2018/nb24021.jpg",
+        "email": "nb24021@novabase.pt",
+        "hash": "13021993",
+
+
+
+        "businessUnit": "CF",
+        "mbti": "ENTP",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 7,
+            "communication": 7,
+            "problemSolving": 7,
+            "management": 6,
+            "android": 4
+        }],
+        "score": []
+    },
+    {
+        "nb": "24003",
+        "name": "João Dias",
+        "avatar": "/março 2018/nb24003.jpg",
+        "email": "nb24003@novabase.pt",
+        "hash": "24021996",
+
+
+
+        "businessUnit": "CF",
+        "mbti": "INTP",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 3,
+            "communication": 4,
+            "problemSolving": 7,
+            "management": 6,
+            "android": 8
+        }],
+        "score": []
+    },
+    {
+        "nb": "24051",
+        "name": "João Pereira",
+        "avatar": "/março 2018/nb24051.jpg",
+        "email": "nb24051@novabase.pt",
+        "hash": "15121993",
+
+
+
+        "businessUnit": "CF",
+        "mbti": "ISTJ",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 7,
+            "communication": 7,
+            "problemSolving": 7,
+            "management": 5,
+            "android": 1
+        }],
+        "score": []
+    },
+    {
+        "nb": "24017",
+        "name": "Milena Balerine",
+        "avatar": "/março 2018/nb24017.jpg",
+        "email": "nb24017@novabase.pt",
+        "hash": "16021989",
+
+
+
+        "businessUnit": "FSI",
+        "mbti": "ESFJ",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 9,
+            "communication": 9,
+            "problemSolving": 8,
+            "management": 8,
+            "android": 7
+        }],
+        "score": []
+    },
+    {
+        "nb": "24011",
+        "name": "José Alfaiate",
+        "avatar": "/março 2018/nb24011.jpg",
+        "email": "nb24011@novabase.pt",
+        "hash": "01031991",
+
+
+
+        "businessUnit": "FSI",
+        "mbti": "ISTP",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 6,
+            "communication": 8,
+            "problemSolving": 7,
+            "management": 6,
+            "android": 1
+        }],
+        "score": []
+    },
+    {
+        "nb": "24016",
+        "name": "Filipe Ramalho",
+        "avatar": "/março 2018/nb24016.jpg",
+        "email": "nb24016@novabase.pt",
+        "hash": "30121989",
+
+
+
+        "businessUnit": "FSI",
+        "mbti": "ENFP",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 9,
+            "communication": 7,
+            "problemSolving": 8,
+            "management": 7,
+            "android": 4
+        }],
+        "score": []
+    },
+    {
+        "nb": "24065",
+        "name": "Luis Machado ",
+        "avatar": "/março 2018/nb24065.jpg",
+        "email": "nb24065@novabase.pt",
+        "hash": "04101989",
+
+
+
+        "businessUnit": "CF",
+        "mbti": "ESTJ",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 9,
+            "communication": 8,
+            "problemSolving": 6,
+            "management": 7,
+            "android": 2
+        }],
+        "score": []
+    },
+    {
+        "nb": "24018",
+        "name": "António Almeida",
+        "avatar": "/março 2018/nb24018.jpg",
+        "email": "nb24018@novabase.pt",
+        "hash": "06011993",
+
+
+
+        "businessUnit": "CF",
+        "mbti": "ISTJ",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 6,
+            "communication": 6,
+            "problemSolving": 9,
+            "management": 5,
+            "android": 4
+        }],
+        "score": []
+    },
+    {
+        "nb": "24000",
+        "name": "Fábio Lourenço",
+        "avatar": "/março 2018/nb24000.jpg",
+        "email": "nb24000@novabase.pt",
+        "hash": "12101994",
+
+
+
+        "businessUnit": "VC",
+        "mbti": "ESTJ",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 8,
+            "communication": 8,
+            "problemSolving": 8,
+            "management": 6,
+            "android": 2
+        }],
+        "score": []
+    },
+    {
+        "nb": "24052",
+        "name": "Jorge Vargues",
+        "avatar": "/março 2018/nb24052.jpg",
+        "email": "nb24052@novabase.pt",
+        "hash": "10021988",
+
+
+
+        "businessUnit": "GTE",
+        "mbti": "INFP",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 7,
+            "communication": 5,
+            "problemSolving": 7,
+            "management": 6,
+            "android": 1
+        }],
+        "score": []
+    },
+    {
+        "nb": "24079",
+        "name": "João Custódio",
+        "avatar": "/março 2018/nb24079.jpg",
+        "email": "nb24079@novabase.pt",
+        "hash": "13051996",
+
+
+
+        "businessUnit": "CF",
+        "mbti": "ISTJ",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 5,
+            "communication": 3,
+            "problemSolving": 7,
+            "management": 6,
+            "android": 6
+        }],
+        "score": []
+    },
+    {
+        "nb": "24034",
+        "name": "João Alves",
+        "avatar": "/março 2018/nb24034.jpg",
+        "email": "nb24034@novabase.pt",
+        "hash": "01051993",
+
+
+
+        "businessUnit": "CF",
+        "mbti": "ESTP",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 8,
+            "communication": 7,
+            "problemSolving": 6,
+            "management": 6,
+            "android": 5
+        }],
+        "score": []
+    },
+    {
+        "nb": "24042",
+        "name": "Soraia Barros",
+        "avatar": "/março 2018/nb24042.jpg",
+        "email": "nb24042@novabase.pt",
+        "hash": "06051991",
+
+
+
+        "businessUnit": "GTE",
+        "mbti": "ESFJ",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 5,
+            "communication": 7,
+            "problemSolving": 8,
+            "management": 5,
+            "android": 1
+        }],
+        "score": []
+    },
+    {
+        "nb": "24074",
+        "name": "Daniela Silvestre",
+        "avatar": "/março 2018/nb24074.jpg",
+        "email": "nb24074@novabase.pt",
+        "hash": "06101990",
+
+
+
+        "businessUnit": "GTE",
+        "mbti": "ISTJ",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 7,
+            "communication": 6,
+            "problemSolving": 6,
+            "management": 6,
+            "android": 5
+        }],
+        "score": []
+    },
+    {
+        "nb": "24098",
+        "name": "Frederico Rodrigues",
+        "avatar": "/março 2018/nb24098.jpg",
+        "email": "nb24098@novabase.pt",
+        "hash": "25121994",
+
+
+
+        "businessUnit": "GTE",
+        "mbti": "ENFP",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 8,
+            "communication": 7,
+            "problemSolving": 8,
+            "management": 7,
+            "android": 7
+        }],
+        "score": []
+    },
+    {
+        "nb": "24069",
+        "name": "Paulo Jorge Soares",
+        "avatar": "/março 2018/nb24069.jpg",
+        "email": "nb24069@novabase.pt",
+        "hash": "24051993",
+
+
+
+        "businessUnit": "FSI",
+        "mbti": "ENFJ",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 7,
+            "communication": 8,
+            "problemSolving": 8,
+            "management": 6,
+            "android": 8
+        }],
+        "score": []
+    },
+    {
+        "nb": "23833",
+        "name": "Inês Santos Mariano",
+        "avatar": "/março 2018/nb23833.jpg",
+        "email": "nb23833@novabase.pt",
+        "hash": "20031992",
+
+
+
+        "businessUnit": "GTE",
+        "mbti": "ISTJ",
+        "counter": 0,
+        "voted": "Nobody",
+        "tardiness": 0,
+        "skills": [{
+            "people": 6,
+            "communication": 7,
+            "problemSolving": 7,
+            "management": 5,
+            "android": 1
+        }],
+        "score": []
+    }
+]

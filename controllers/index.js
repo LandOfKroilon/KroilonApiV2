@@ -1,9 +1,12 @@
-var express = require('express');
-var router = express.Router();
+let express = require('express'),
+    router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.status(200).end();
-});
+//TODO load all other controllers
+//router.use('/academy', require('./academy'));
+
+router.get('', function(req, res) {
+  res.send('Hello from root ctrl');
+})
+
 
 module.exports = router;

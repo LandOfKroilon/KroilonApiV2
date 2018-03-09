@@ -16,6 +16,10 @@ let trainee = new Schema({
         required: [true, 'Email must be valid'],
         validate: [validateEmail, 'Please fill a valid email address']
     },
+    businessUnit: {
+        type: String,
+        required: true
+    },
     avatar: String
 });
 
