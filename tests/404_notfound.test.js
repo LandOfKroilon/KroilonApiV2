@@ -6,5 +6,5 @@ describe('Send a request to an uri that does not exists', () => {
         const response = await request(app).get('/some_dummy_uri');
         expect(response.statusCode).toBe(404);
     });
-})
+});
 
