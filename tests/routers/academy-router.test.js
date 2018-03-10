@@ -7,4 +7,4 @@ describe('Request the current academy', () => {
         expect(response.statusCode).toBe(200);
         expect(response.type).toBe('application/json');
     });
-})
+});
