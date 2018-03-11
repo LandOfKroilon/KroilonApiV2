@@ -3,10 +3,28 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node --debug-brk ./bin/www",
-    "test": "jest"
+    "start": "npm run serve",
+    "build": "npm run build-ts && npm run tslint",
+    "serve": "node dist/server.js",
+    "watch-node": "nodemon dist/server.js",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"Sass,TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-sass\" \"npm run watch-ts\" \"npm run watch-node\"",
+    "test": "jest --forceExit --coverage --verbose",
+    "build-ts": "tsc",
+    "watch-ts": "tsc -w",
+    "build-sass": "node-sass src/public/css/main.scss dist/public/css/main.css",
+    "watch-sass": "node-sass -w src/public/css/main.scss dist/public/css/main.css",
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "copy-static-assets": "ts-node copyStaticAssets.ts",
+    "debug": "npm run build && npm run watch-debug",
+    "serve-debug": "nodemon --inspect dist/server.js",
+    "watch-debug": "concurrently -k -p \"[{name}]\" -n \"Sass,TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-sass\" \"npm run watch-ts\" \"npm run serve-debug\""
   },
   "dependencies": {
+    "@types/body-parser": "^1.16.8",
+    "@types/cookie-parser": "^1.4.1",
+    "@types/debug": "0.0.30",
+    "@types/errorhandler": "0.0.32",
+    "@types/morgan": "^1.7.35",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
@@ -17,14 +35,19 @@
     "morgan": "~1.9.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "serve-favicon": "~2.4.5"
+    "serve-favicon": "~2.4.5",
+    "tslint": "^5.9.1"
   },
   "devDependencies": {
+    "@types/node": "^9.4.7",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "errorhandler": "^1.5.0",
     "jasmine": "^3.1.0",
     "jest": "^22.4.2",
     "superagent": "^3.8.2",
-    "supertest": "^3.0.0"
+    "supertest": "^3.0.0",
+    "ts-jest": "^22.4.1",
+    "typescript": "^2.7.2"
   }
 }
