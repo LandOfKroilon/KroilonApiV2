@@ -1,27 +1,27 @@
 
 ## Install dependencies
 
-cd <project_name>
+`cd <project_name>`
 
-npm install
+`npm install`
 
 ## Start your mongoDB local server
 
-mongod
+`mongod`
 
 ## Build and run the project
 
-npm run build
+`npm run build`
 
-npm start
+`npm start`
 
-Navigate to _http://localhost:3000_
+Navigate to `_http://localhost:3000_`
 
 ## Run tests
 
-npm run build
+`npm run build`
 
-npm run test
+`npm run test`
 
 
 ## Packages
