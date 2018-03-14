@@ -1,20 +1,20 @@
-import { validateEmail } from '../helpers/Validator';
+const mongoose = require("mongoose");
 
-let trainee = new Schema({
+
+const schema = new mongoose.Schema({
     name: {
         type: String,
         required: true
     },
     nb: {
-        type: Int,
+        type: Number,
         unique: true,
         required: true
     },
     email: {
         type: String,
         unique: true,
-        required: [true, 'Email must be valid'],
-        validate: [validateEmail, 'Please fill a valid email address']
+        required: true,
     },
     businessUnit: {
         type: String,
@@ -23,4 +23,5 @@ let trainee = new Schema({
     avatar: String
 });
 
-export default trainee;
+const TraineeModel = mongoose.model("Trainee", schema);
+export default TraineeModel;

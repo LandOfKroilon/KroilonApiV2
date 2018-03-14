@@ -1,6 +1,4 @@
-"use strict"
-
-let trainees = [{
+[{
         "id": "23889",
         "name": "Pedro Azenha",
         "avatar": "/março2018/nb23889.jpg",
@@ -51,20 +49,3 @@ let trainees = [{
         "score": []
     }
 ]
-
-
-let admins = [{
-    id: 1,
-    name: "Pedro Crespo",
-    email: "pedro.crespo@novabase.pt",
-    avatar: "/february2017/13471.PNG",
-    hash: "12345"
-}];
-
-let sessions = [];
-
-module.exports = {
-    trainees: trainees,
-    admins: admins,
-    sessions: sessions
-};

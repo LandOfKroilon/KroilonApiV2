@@ -11,14 +11,17 @@ const app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 
-app.use(logger("dev"));
+app.use(logger(process.env.NODE_ENV));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public"), { maxAge: 31557600000 }));
 
+// import controllers
+import * as homeController from "./controllers/home";
 
-// TODO add routes
+// assign routes to actions
+app.get("/", homeController.index);
 
 
 // catch 404 and forward to error handler
@@ -33,7 +36,7 @@ import errorHandler from "errorhandler";
 /**
  * Error Handler. Provides full stack - remove for production
  */
-if (process.env.NODE_ENV === "development") {
+if (process.env.NODE_ENV === "dev") {
     // only use in development
     app.use(errorHandler());
   }

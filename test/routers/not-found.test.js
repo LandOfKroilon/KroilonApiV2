@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../app')
+const app = require('../../src/app')
 
 describe('Send a request to an uri that does not exists', () => {
     test('It should respond with 404 status code', async () => {
