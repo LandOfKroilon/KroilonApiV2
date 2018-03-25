@@ -19,9 +19,16 @@ app.use(express.static(path.join(__dirname, "public"), { maxAge: 31557600000 }))
 
 // import controllers
 import * as homeController from "./controllers/home";
+import * as academyController from "./controllers/academy";
 
 // assign routes to actions
 app.get("/", homeController.index);
+// academy ctrl
+app.get("/academy", academyController.index);
+app.get("/academy/trainees", academyController.getAcademyTrainees);
+app.get("/academy/config/story", academyController.getAcademyStories);
+app.post("/academy/config/story", academyController.insertAcademyStories);
+app.get("/academy/sessionpoints", academyController.getAcademyPoints);
 
 
 // catch 404 and forward to error handler
