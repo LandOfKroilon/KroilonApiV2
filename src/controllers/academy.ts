@@ -1,4 +1,13 @@
+// type imports
+import { MongoClient, Db, MongoError } from "mongodb";
 import { Request, Response, NextFunction } from "express";
+// import { db } from "../server";
+
+
+/**
+ * Use this to access Academy collection
+ */
+// const academy = db.collection("Academy");
 
 /**
  * GET /academy
@@ -43,7 +52,8 @@ export let getAcademyStories = (req: Request, res: Response, next: NextFunction)
  *
  */
 export let insertAcademyStories = (req: Request, res: Response, next: NextFunction) => {
-
+    console.log(req.body);
+    res.status(201).send();
 };
 
 /**

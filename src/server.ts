@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// type imports
+import { MongoClient, Db, MongoError } from "mongodb";
+import { Server } from "http";
 
 /**
  * Module dependencies.
@@ -15,39 +18,39 @@ const debug = debugModule("kroilonv2:server");
 const port = normalizePort(process.env.PORT || 3000);
 app.set("port", port);
 
-/**
- * Create HTTP server.
- */
+import instance from "mongodb";
+const mongoClient = instance.MongoClient;
+let db: Db;
+let server: Server;
 
-const server = http.createServer(app);
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-
-server.listen(port);
-server.on("error", onError);
-server.on("listening", onListening);
-
+// Initialize connection once
+mongoClient.connect(process.env.MONGODB_URI, undefined, (err: MongoError, client: MongoClient) => {
+  server = http.createServer(app);
+  db = client.db(process.env.DATABASE);
+  // Listen on provided port, on all network interfaces.
+  server.listen(port);
+  server.on("error", onError);
+  server.on("listening", onListening);
+});
 
 /**
  * Normalize a port into a number, string, or false.
  */
 function normalizePort(val: any) {
-    const port = parseInt(val, 10);
+  const port = parseInt(val, 10);
 
-    if (isNaN(port)) {
-      // named pipe
-      return val;
-    }
-
-    if (port >= 0) {
-      // port number
-      return port;
-    }
-
-    return false;
+  if (isNaN(port)) {
+    // named pipe
+    return val;
   }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
 
 /**
  * Event listener for HTTP server "error" event.
@@ -58,9 +61,7 @@ function onError(error: any) {
     throw error;
   }
 
-  const bind = typeof port === "string"
-    ? "Pipe " + port
-    : "Port " + port;
+  const bind = typeof port === "string" ? "Pipe " + port : "Port " + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -83,8 +84,6 @@ function onError(error: any) {
 
 function onListening() {
   const addr = server.address();
-  const bind = typeof addr === "string"
-    ? "pipe " + addr
-    : "port " + addr.port;
+  const bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
   debug(`Listening on ${bind}`);
 }

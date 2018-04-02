@@ -15,7 +15,6 @@ app.use(logger(process.env.NODE_ENV));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public"), { maxAge: 31557600000 }));
 
 // import controllers
 import * as homeController from "./controllers/home";
@@ -30,14 +29,6 @@ app.get("/academy/config/story", academyController.getAcademyStories);
 app.post("/academy/config/story", academyController.insertAcademyStories);
 app.get("/academy/sessionpoints", academyController.getAcademyPoints);
 
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  const err = new Error("Not Found");
-  res.status(404);
-  next(err);
-});
-
 import errorHandler from "errorhandler";
 
 /**
@@ -46,7 +37,18 @@ import errorHandler from "errorhandler";
 if (process.env.NODE_ENV === "dev") {
     // only use in development
     app.use(errorHandler());
-  }
+}
+
+app.get("/favicon.ico", function(req, res) {
+    res.status(204);
+});
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  const err = new Error("Not Found");
+  res.status(404);
+  next(err);
+});
 
 
 export default app;
