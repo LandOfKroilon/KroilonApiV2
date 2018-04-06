@@ -1,0 +1,5 @@
+interface ISkill {
+
+}
+
+export = ISkill;

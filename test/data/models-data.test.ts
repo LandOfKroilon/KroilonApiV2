@@ -17,6 +17,8 @@ beforeAll((done) => {
 
         connection = client.db("kroilon_local");
 
+
+
         done();
       });
 }, asyncTimeout);
@@ -64,7 +66,23 @@ describe("After database is seeded with dummy data", () => {
                 expect(academies[0].sessions.length).toBe(0);
                 expect(academies[0].admins.length).toBe(1);
                 expect(academies[0].trainees.length).toBe(3);
-                // expect(academies[0].createdOn).toBeDefined();
+                expect(academies[0].createdOn).toBeDefined();
+                expect(academies[0].name).toBe("dummy name");
+                expect(academies[0].dailyMessage).toBe("dummy daily message");
+                done();
+            });
+    });
+
+    test("the records have the same data from the seed file", (done) => {
+        const collection = connection.collection("Academy");
+        collection.find({})
+            .toArray(function(err, academies) {
+                assert.equal(err, undefined);
+                expect(academies).toBeDefined();
+                expect(academies[0].sessions.length).toBe(0);
+                expect(academies[0].admins.length).toBe(1);
+                expect(academies[0].trainees.length).toBe(3);
+                expect(academies[0].createdOn).toBeDefined();
                 expect(academies[0].name).toBe("dummy name");
                 expect(academies[0].dailyMessage).toBe("dummy daily message");
                 done();

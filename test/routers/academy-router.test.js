@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../../app');
+const app = require('../../src/types/app');
 
 describe('Related to the current academy', () => {
     test('It should be possible to get a representation', async () => {

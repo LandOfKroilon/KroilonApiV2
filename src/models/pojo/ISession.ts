@@ -1,0 +1,5 @@
+interface ISession {
+
+}
+
+export = ISession;

@@ -19,6 +19,7 @@ app.use(cookieParser());
 // import controllers
 import * as homeController from "./controllers/home";
 import * as academyController from "./controllers/academy";
+import * as adminController from "./controllers/admin";
 
 // assign routes to actions
 app.get("/", homeController.index);
@@ -28,6 +29,11 @@ app.get("/academy/trainees", academyController.getAcademyTrainees);
 app.get("/academy/config/story", academyController.getAcademyStories);
 app.post("/academy/config/story", academyController.insertAcademyStories);
 app.get("/academy/sessionpoints", academyController.getAcademyPoints);
+
+// admin controller
+
+app.get("/academy/admin", adminController.get);
+app.post("/academy/admin", adminController.create);
 
 import errorHandler from "errorhandler";
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // type imports
-import { MongoClient, Db, MongoError } from "mongodb";
 import { Server } from "http";
+import mongoose from "mongoose";
 
 /**
  * Module dependencies.
@@ -18,20 +18,22 @@ const debug = debugModule("kroilonv2:server");
 const port = normalizePort(process.env.PORT || 3000);
 app.set("port", port);
 
-import instance from "mongodb";
-const mongoClient = instance.MongoClient;
-let db: Db;
 let server: Server;
 
 // Initialize connection once
-mongoClient.connect(process.env.MONGODB_URI, undefined, (err: MongoError, client: MongoClient) => {
-  server = http.createServer(app);
-  db = client.db(process.env.DATABASE);
-  // Listen on provided port, on all network interfaces.
-  server.listen(port);
-  server.on("error", onError);
-  server.on("listening", onListening);
-});
+mongoose.connect(process.env.MONGODB_URI)
+.then(() => {
+    console.log("Connected to database");
+    server = http.createServer(app);
+    // Listen on provided port, on all network interfaces.
+    server.listen(port);
+    server.on("error", onError);
+    server.on("listening", onListening);
+  },
+  err => {
+      console.error(err);
+  }
+);
 
 /**
  * Normalize a port into a number, string, or false.
