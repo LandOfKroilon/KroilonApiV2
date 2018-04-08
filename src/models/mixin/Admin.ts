@@ -8,7 +8,7 @@ interface IAdminModel extends IAdmin, mongoose.Document {
 const adminSchema = new mongoose.Schema({
     _id: {
         type: Number,
-        unique: true
+        required: true
     },
     name: {
         type: String,
