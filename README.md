@@ -1,4 +1,6 @@
 
+[![Build Status](https://travis-ci.org/LandOfKroilon/KroilonApiV2.svg?branch=master)](https://travis-ci.org/LandOfKroilon/KroilonApiV2)
+
 ## Install dependencies
 
 `cd <project_name>`
