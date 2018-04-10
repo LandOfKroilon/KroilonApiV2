@@ -77,4 +77,4 @@ router.get("/config/story", getAcademyStories);
 router.get("/trainees", getAcademyTrainees);
 
 
-export default router;
+module.exports = router;
