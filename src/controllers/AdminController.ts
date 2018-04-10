@@ -4,6 +4,9 @@ import { Request, Response, NextFunction } from "express";
 import * as errors from "../config/MongoErrors";
 import * as messages from "../config/ErrorMessages";
 const statusCodes = require("http").STATUS_CODES;
+import express from "express";
+const router = express.Router();
+
 
 /**
  * GET /academy/admin
@@ -14,7 +17,7 @@ const statusCodes = require("http").STATUS_CODES;
  * @param res The response sent
  * @param next Callback
  */
-export let get = (req: Request, res: Response, next: NextFunction) => {
+const get = (req: Request, res: Response, next: NextFunction) => {
     AdminModel.find({})
     .limit(10)
     .sort("-_id")
@@ -37,7 +40,7 @@ export let get = (req: Request, res: Response, next: NextFunction) => {
  * @param res The response sent
  * @param next Callback
  */
-export let create = (req: Request, res: Response, next: NextFunction) => {
+const create = (req: Request, res: Response, next: NextFunction) => {
     const admin = new AdminModel(req.body);
 
     admin.save().then(() => {
@@ -62,3 +65,9 @@ export let create = (req: Request, res: Response, next: NextFunction) => {
         });
     });
 };
+
+// set routes
+router.get("/", get);
+router.post("/", create);
+
+module.exports = router;

@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Router } from "express";
 require("dotenv").config();
 import path from "path";
 import bodyParser from "body-parser";
@@ -16,24 +16,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// import controllers
-import * as homeController from "./controllers/home";
-import * as academyController from "./controllers/academy";
-import * as adminController from "./controllers/admin";
-
-// assign routes to actions
-app.get("/v2/", homeController.index);
-// academy ctrl
-app.get("/v2/academy", academyController.index);
-app.get("/v2/academy/trainees", academyController.getAcademyTrainees);
-app.get("/v2/academy/config/story", academyController.getAcademyStories);
-app.post("/v2/academy/config/story", academyController.insertAcademyStories);
-app.get("/v2/academy/sessionpoints", academyController.getAcademyPoints);
-
+// home controller
+app.get("/v2/", require("./controllers/HomeController"));
+// academy controller
+app.get("/v2/academy", require("./controllers/AcademyController"));
 // admin controller
-
-app.get("/v2/academy/admin", adminController.get);
-app.post("/v2/academy/admin", adminController.create);
+app.use("/v2/academy/admin", require("./controllers/AdminController"));
 
 import errorHandler from "errorhandler";
 

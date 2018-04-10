@@ -1,6 +1,7 @@
 // type imports
 import { Request, Response, NextFunction } from "express";
-
+import express from "express";
+const router = express.Router();
 
 
 /**
@@ -12,7 +13,7 @@ import { Request, Response, NextFunction } from "express";
  * @param res The response sent
  * @param next Callback
  */
-export let index = (req: Request, res: Response, next: NextFunction) => {
+const index = (req: Request, res: Response, next: NextFunction) => {
 
 };
 
@@ -25,7 +26,7 @@ export let index = (req: Request, res: Response, next: NextFunction) => {
  * @param res The response sent
  * @param next Callback
  */
-export let getAcademyTrainees = (req: Request, res: Response, next: NextFunction) => {
+const getAcademyTrainees = (req: Request, res: Response, next: NextFunction) => {
 
 };
 
@@ -35,7 +36,7 @@ export let getAcademyTrainees = (req: Request, res: Response, next: NextFunction
  * Devolve o conjunto de "story's" da academia mais actual
  *
  */
-export let getAcademyStories = (req: Request, res: Response, next: NextFunction) => {
+const getAcademyStories = (req: Request, res: Response, next: NextFunction) => {
 
 };
 
@@ -45,7 +46,7 @@ export let getAcademyStories = (req: Request, res: Response, next: NextFunction)
  * Insert a group of stories for the current academy
  *
  */
-export let insertAcademyStories = (req: Request, res: Response, next: NextFunction) => {
+const insertAcademyStories = (req: Request, res: Response, next: NextFunction) => {
     console.log(req.body);
     res.status(201).send();
 };
@@ -55,7 +56,7 @@ export let insertAcademyStories = (req: Request, res: Response, next: NextFuncti
  *
  * Devolve o registo/log de todas as adições/remoções de pontos
  */
-export let getAcademyPoints = (req: Request, res: Response, next: NextFunction) => {
+const getAcademyPoints = (req: Request, res: Response, next: NextFunction) => {
 
 };
 
@@ -64,6 +65,16 @@ export let getAcademyPoints = (req: Request, res: Response, next: NextFunction) 
  *
  * Insere uma nova academia;
  */
-export let insertAcademy = (req: Request, res: Response, next: NextFunction) => {
+const insertAcademy = (req: Request, res: Response, next: NextFunction) => {
 
 };
+
+router.get("/", index);
+router.post("/", insertAcademy);
+router.get("/sessionpoints", getAcademyPoints);
+router.post("/config/story", insertAcademyStories);
+router.get("/config/story", getAcademyStories);
+router.get("/trainees", getAcademyTrainees);
+
+
+export default router;
