@@ -8,8 +8,6 @@ import app from "../../src/app";
 
 const url = "/v2/academy/admin";
 
-const ids = [13471, 23770];
-
 
 beforeAll((done) => {
     mongoose.connect("mongodb://localhost:27017/kroilon_local")
@@ -45,9 +43,7 @@ describe(url, () => {
                 "email": faker.internet.email(),
                 "password": "dummy1"
             };
-            const response = await request(app)
-                .post("/v2/academy/admin")
-                .send(admin);
+            const response = await request(app).post(url).send(admin);
             expect(response.statusCode).toBe(201);
             expect(response.type).toBe("application/json");
             expect(response.body._id).toEqual(admin._id);
@@ -66,9 +62,7 @@ describe(url, () => {
                 "email": faker.internet.email(),
                 "password": "dummy1"
             };
-            const response = await request(app)
-                .post("/v2/academy/admin")
-                .send(admin);
+            const response = await request(app).post(url).send(admin);
             expect(response.statusCode).toBe(400);
             expect(response.type).toBe("application/json");
             expect(response.body.name).toBeDefined();
@@ -84,9 +78,7 @@ describe(url, () => {
                 "email": faker.internet.email(),
                 "password": "dummy1"
             };
-            const response = await request(app)
-                .post("/v2/academy/admin")
-                .send(admin);
+            const response = await request(app).post(url).send(admin);
             expect(response.statusCode).toBe(400);
             expect(response.type).toBe("application/json");
             expect(response.body.message).toBeDefined();
