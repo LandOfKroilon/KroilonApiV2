@@ -38,4 +38,4 @@ const adminSchema = new mongoose.Schema({
 
 const Admin = mongoose.model<IAdminModel>("Admin", adminSchema);
 
-export = Admin;
+export { Admin };

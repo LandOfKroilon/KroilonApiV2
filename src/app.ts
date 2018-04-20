@@ -1,29 +1,30 @@
-import express, { Router } from "express";
+import express from "express";
+import "reflect-metadata";
 require("dotenv").config();
 import path from "path";
 import bodyParser from "body-parser";
-import cookieParser from "cookie-parser";
-import logger from "morgan";
+import container from "./inversify.config";
+import errorHandler from "errorhandler";
+import TYPES from "./types";
+import { RegistrableController } from "./1presentation/controllers/RegistrableController";
 
-const app = express();
+const app: express.Application = express();
+
+// grabs the Controller from IoC container and registers all the endpoints
+const controllers: RegistrableController[] = container.getAll<RegistrableController>(TYPES.Controller);
+controllers.forEach(controller => controller.register(app));
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 
-app.use(logger(process.env.NODE_ENV));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
 
-// home controller
-app.get("/v2/", require("./controllers/HomeController"));
-// academy controller
-app.get("/v2/academy", require("./controllers/AcademyController"));
-// admin controller
-app.use("/v2/academy/admin", require("./controllers/AdminController"));
 
-import errorHandler from "errorhandler";
+// app.use("/v2", );
+// app.use("/v2/academy/admin", );
+
 
 /**
  * Error Handler. Provides full stack - remove for production
@@ -32,17 +33,26 @@ if (process.env.NODE_ENV === "dev") {
     // only use in development
     app.use(errorHandler());
 }
+else {
+    // setup express middleware logging and error handling
+    app.use(function (err: Error, _: express.Request, __: express.Response, next: express.NextFunction) {
+        // Replace with Winston _logger.error(err.stack);~
+        console.log(err.stack);
+        next(err);
+    });
+}
 
-app.get("/favicon.ico", function(req, res) {
+app.get("/favicon.ico", function(_, res) {
     res.status(204);
 });
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function(_, res, next) {
   const err = new Error("Not Found");
   res.status(404);
   next(err);
 });
+
 
 
 export default app;
