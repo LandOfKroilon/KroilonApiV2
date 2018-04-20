@@ -18,6 +18,9 @@
         "noUnusedParameters": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
+        "allowSyntheticDefaultImports": false,
+        "allowUnreachableCode": false,
+        "strictFunctionTypes": true,
         "paths": {
             "*": [
                 "node_modules/*",
