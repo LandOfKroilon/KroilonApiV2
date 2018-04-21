@@ -5,7 +5,7 @@
 
 `cd <project_name>`
 
-`npm install`
+`yarn install`
 
 ## Start your mongoDB local server
 
@@ -13,23 +13,16 @@
 
 ## Build and run the project
 
-`npm run build`
+`yarn run build`
 
-`npm start`
+`yarn start`
 
 Navigate to `_http://localhost:3000_`
 
 ## Run tests
 
-`npm install -g node-mongo-seeds`
-
-`seed`
-
 `npm run build`
 
 `npm run test`
-
-
-## Packages
 
 
