@@ -1,7 +1,6 @@
 {
     "compilerOptions": {
         "module": "commonjs",
-        "esModuleInterop": true,
         "target": "es6",
         "lib": ["es6"],
         "noImplicitAny": true,
@@ -20,7 +19,6 @@
         "emitDecoratorMetadata": true,
         "allowSyntheticDefaultImports": false,
         "allowUnreachableCode": false,
-        "strictFunctionTypes": true,
         "paths": {
             "*": [
                 "node_modules/*",

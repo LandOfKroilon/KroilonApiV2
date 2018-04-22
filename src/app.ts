@@ -1,18 +1,14 @@
-import express from "express";
+import * as express from "express";
 import "reflect-metadata";
 require("dotenv").config();
-import path from "path";
-import bodyParser from "body-parser";
+import * as path from "path";
+import * as bodyParser from "body-parser";
 import container from "./inversify.config";
-import errorHandler from "errorhandler";
+const errorHandler = require("errorhandler");
 import TYPES from "./types";
 import { RegistrableController } from "./1presentation/controllers/RegistrableController";
 
 const app: express.Application = express();
-
-// grabs the Controller from IoC container and registers all the endpoints
-const controllers: RegistrableController[] = container.getAll<RegistrableController>(TYPES.Controller);
-controllers.forEach(controller => controller.register(app));
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -21,10 +17,9 @@ app.set("view engine", "hbs");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-
-// app.use("/v2", );
-// app.use("/v2/academy/admin", );
-
+// grabs the Controller from IoC container and registers all the endpoints
+const controllers: RegistrableController[] = container.getAll<RegistrableController>(TYPES.Controller);
+controllers.forEach(controller => controller.register(app));
 
 /**
  * Error Handler. Provides full stack - remove for production

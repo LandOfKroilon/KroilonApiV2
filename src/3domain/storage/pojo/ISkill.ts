@@ -1,5 +1,0 @@
-interface ISkill {
-
-}
-
-export = ISkill;

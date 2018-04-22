@@ -1,13 +1,11 @@
 #!/usr/bin/env node
 // type imports
 import { Server } from "http";
-import mongoose from "mongoose";
-
 /**
  * Module dependencies.
  */
 import app from "./app";
-import debugModule from "debug";
+import debugModule = require("debug");
 const http = require("http");
 
 const debug = debugModule("kroilonv2:server");
@@ -18,22 +16,12 @@ const debug = debugModule("kroilonv2:server");
 const port = normalizePort(process.env.PORT || 3000);
 app.set("port", port);
 
-let server: Server;
+const server: Server = http.createServer(app);
+// Listen on provided port, on all network interfaces.
+server.listen(port);
+server.on("error", onError);
+server.on("listening", onListening);
 
-// Initialize connection once
-mongoose.connect(process.env.MONGODB_URI)
-.then(() => {
-    console.log("Connected to database");
-    server = http.createServer(app);
-    // Listen on provided port, on all network interfaces.
-    server.listen(port);
-    server.on("error", onError);
-    server.on("listening", onListening);
-  },
-  err => {
-      console.error(err);
-  }
-);
 
 /**
  * Normalize a port into a number, string, or false.
