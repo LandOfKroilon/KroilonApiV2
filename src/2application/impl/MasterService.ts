@@ -2,8 +2,8 @@ import { IMasterService } from "../interfaces/IMasterService";
 import { injectable, inject } from "inversify";
 import TYPES from "../../types";
 import { MasterDoc } from "../../3domain/models/MasterSchema";
-import { Master } from "../../3domain/models/Master";
 import { IMasterRepository } from "../../3domain/repositories/IMasterRepository";
+import { MasterDTO } from "../dto/MasterDTO";
 
 @injectable()
 export class MasterService implements IMasterService {
@@ -11,16 +11,16 @@ export class MasterService implements IMasterService {
     @inject(TYPES.MasterRepository)
     private masterRepository: IMasterRepository;
 
-    getMasters(): Promise<Array<Master>> {
+    getMasters(): Promise<Array<MasterDTO>> {
         return this.masterRepository.findAll()
-            .then((masters) => masters.map((dto: MasterDoc) => { return this.toMasterDoc(dto); }))
+            .then((masters) => masters.map((dto: MasterDoc) => { return this.toDTO(dto); }))
             .catch((err) => {
                 console.log(err);
                 return [];
             });
     }
 
-    createMaster(content: any): Promise<Master> {
+    createMaster(content: any): Promise<MasterDTO> {
         return this.masterRepository.findOne({id: content.id})
             .then((doc) => {
                 if (doc != undefined) {
@@ -38,8 +38,8 @@ export class MasterService implements IMasterService {
             .catch((err) => { throw err; } );
     }
 
-    private toMasterDoc(masterDTO: MasterDoc): Master {
-        return new Master(
+    private toDTO(masterDTO: MasterDoc): MasterDTO {
+        return new MasterDTO(
             masterDTO.id,
             masterDTO.name,
             masterDTO.email,

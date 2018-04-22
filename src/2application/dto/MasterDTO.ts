@@ -1,4 +1,4 @@
-export class Master {
+export class MasterDTO {
 
     readonly id: number;
     readonly name: string;

@@ -1,8 +1,8 @@
-import { Master } from "../../3domain/models/Master";
+import { MasterDTO } from "../dto/MasterDTO";
 
 export interface IMasterService {
 
-    getMasters(): Promise<Array<Master>>;
-    createMaster(content: any): Promise<Master>;
+    getMasters(): Promise<Array<MasterDTO>>;
+    createMaster(content: any): Promise<MasterDTO>;
 
 }
