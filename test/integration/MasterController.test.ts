@@ -2,7 +2,7 @@ import * as assert from "assert";
 const request = require("supertest");
 const faker = require("faker");
 import app from "../../src/app";
-import { IMasterRepository } from "../../src/3domain/repositories/IMasterRepository";
+import { IMasterRepository } from "../../src/3domain/repositories/interfaces/IMasterRepository";
 import { MasterRepository } from "../../src/3domain/repositories/impl/MasterRepository";
 
 const url = "/academy/admin";

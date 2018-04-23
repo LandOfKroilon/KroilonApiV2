@@ -1,6 +1,7 @@
-import { IMasterRepository } from "../IMasterRepository";
-import { kroilonDatabase, MasterDoc } from "../../models/MasterSchema";
+import { IMasterRepository } from "../interfaces/IMasterRepository";
+import { MasterDoc } from "../../models/MasterSchema";
 import { injectable } from "inversify";
+import { kroilonDatabase } from "../KroilonDatabase";
 
 @injectable()
 export class MasterRepository implements IMasterRepository {

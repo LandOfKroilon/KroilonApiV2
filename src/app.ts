@@ -3,9 +3,9 @@ import "reflect-metadata";
 require("dotenv").config();
 import * as path from "path";
 import * as bodyParser from "body-parser";
-import container from "./inversify.config";
+import container from "./config/inversify.config";
 const errorHandler = require("errorhandler");
-import TYPES from "./types";
+import TYPES from "./config/types";
 import { RegistrableController } from "./1presentation/controllers/RegistrableController";
 
 const app: express.Application = express();

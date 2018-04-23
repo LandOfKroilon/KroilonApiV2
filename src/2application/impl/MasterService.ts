@@ -1,8 +1,8 @@
 import { IMasterService } from "../interfaces/IMasterService";
 import { injectable, inject } from "inversify";
-import TYPES from "../../types";
+import TYPES from "../../config/types";
 import { MasterDoc } from "../../3domain/models/MasterSchema";
-import { IMasterRepository } from "../../3domain/repositories/IMasterRepository";
+import { IMasterRepository } from "../../3domain/repositories/interfaces/IMasterRepository";
 import { MasterDTO } from "../dto/MasterDTO";
 
 @injectable()
@@ -20,7 +20,7 @@ export class MasterService implements IMasterService {
             });
     }
 
-    createMaster(content: any): Promise<MasterDTO> {
+    createMaster(content: MasterDTO): Promise<MasterDTO> {
         return this.masterRepository.findOne({id: content.id})
             .then((doc) => {
                 if (doc != undefined) {
@@ -34,7 +34,7 @@ export class MasterService implements IMasterService {
                 avatar: content.avatar,
                 password: content.password
             }))
-            .then((m) => m)
+            .then((m) => this.toDTO(m))
             .catch((err) => { throw err; } );
     }
 

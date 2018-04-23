@@ -3,7 +3,7 @@ import * as express from "express";
 import { RegistrableController } from "./RegistrableController";
 import { injectable, inject } from "inversify";
 import { IMasterService } from "../../2application/interfaces/IMasterService";
-import TYPES from "../../types";
+import TYPES from "../../config/types";
 import { Problem } from "./types/Problem";
 import { MasterDTO } from "../../2application/dto/MasterDTO";
 
@@ -18,30 +18,47 @@ export class MasterController implements RegistrableController {
 
     register(app: express.Application): void {
         app.route("/academy/admin")
-            .get(async(_: express.Request, res: express.Response) => {
-                this.masterService.getMasters()
-                    .then((masters: MasterDTO[]) => res.status(200).send(masters))
-                    .catch((err) => res.send(err));
-            })
-            .post(async(req: express.Request, res: express.Response) => {
+            .get(this.handleGetMasterResource())
+            .post(this.handleCreateMasterResource());
+    }
 
-                // TODO validate body received
+    /**
+     * Method to handle the POST request to the uri "/academy/admin".
+     * The process of data is expected to create a new Master resource.
+     */
+    private handleCreateMasterResource(): express.RequestHandler {
+        return async (req: express.Request, res: express.Response) => {
+            // TODO validate body received
+            this.masterService.createMaster(req.body)
+                .then((newMaster) => res.status(201).send(newMaster))
+                .catch((_) => {
+                    // TODO Log message
+                    // TODO check if error is from request
+                    const code = 400;
+                    const response = new Problem(code,
+                        "/probs/master-already-exists",
+                        "Resource already exists",
+                        `Master with id ${req.body.id} already exists.`);
 
-                this.masterService.createMaster(req.body)
-                    .then((newMaster: MasterDTO) => res.status(201).send(newMaster))
-                    .catch((_) => {
-                        // TODO Log message
+                    res.status(code)
+                        .type(response.contentType)
+                        .send(response);
+                });
+        };
+    }
 
-                        // TODO check if error is from request
-                        const code = 400;
-                        const response = new Problem(code,
-                                                    "/probs/master-already-exists",
-                                                    "Resource already exists",
-                                                    `Master with id ${req.body.id} already exists.`);
-                        res.status(code)
-                            .type(response.contentType)
-                            .send(response);
-                    });
-            });
+    /**
+     * Method to handle the GET request to the uri "/academy/admin".
+     * It returns an array with all the masters found in DB.
+     */
+    private handleGetMasterResource(): express.RequestHandler {
+        return async (_: express.Request, res: express.Response) => {
+            this.masterService.getMasters()
+                .then((masters: MasterDTO[]) => res.status(200).send(masters))
+                // TODO handle better this error
+                .catch((err) => res.send(err));
+        };
     }
 }
+
+
