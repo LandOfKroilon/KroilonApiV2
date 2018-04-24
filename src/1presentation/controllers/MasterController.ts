@@ -4,8 +4,11 @@ import { RegistrableController } from "./RegistrableController";
 import { injectable, inject } from "inversify";
 import { IMasterService } from "../../2application/interfaces/IMasterService";
 import TYPES from "../../config/types";
-import { Problem } from "./types/Problem";
+import { Problem } from "../types/Problem";
 import { MasterDTO } from "../../2application/dto/MasterDTO";
+import { Collection, MediaType } from "../collection/Collection";
+import Item from "../collection/Item";
+import Data from "../collection/Data";
 
 @injectable()
 export class MasterController implements RegistrableController {
@@ -52,9 +55,29 @@ export class MasterController implements RegistrableController {
      * It returns an array with all the masters found in DB.
      */
     private handleGetMasterResource(): express.RequestHandler {
-        return async (_: express.Request, res: express.Response) => {
+        return async (req: express.Request, res: express.Response) => {
             this.masterService.getMasters()
-                .then((masters: MasterDTO[]) => res.status(200).send(masters))
+                .then((masters: MasterDTO[]) => {
+
+                    res.type(MediaType);
+                    const collectionHref = req.originalUrl;
+                    const collection: Collection = new Collection(collectionHref);
+
+                    masters.forEach(master => {
+                        const item = new Item();
+                        item.href = `${collectionHref}/${master.id}`;
+                        item.data.push(new Data("id", master.id.toString(), "Admin's id"));
+                        item.data.push(new Data("name", master.name, "Admin's name"));
+                        item.data.push(new Data("avatar", master.avatar, "Admin's avatar uri"));
+                        item.data.push(new Data("email", master.email, "Admin's email"));
+                        item.data.push(new Data("createdOn", master.createdOn.toLocaleDateString(), "When the admin was created"));
+
+                        collection.items.push(item);
+                    });
+
+
+                    return res.status(200).send({collection});
+                })
                 // TODO handle better this error
                 .catch((err) => res.send(err));
         };
