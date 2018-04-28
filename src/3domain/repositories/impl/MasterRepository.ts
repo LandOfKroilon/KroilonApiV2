@@ -9,19 +9,19 @@ export class MasterRepository implements IMasterRepository {
     async deleteMany(conditions: Object = {}): Promise<number> {
         return await kroilonDatabase.connect()
             .then(() => kroilonDatabase.Masters.remove(conditions))
-            .catch((err) => { return err; });
+            .catch((err) => { throw err; });
     }
 
     async findOne(conditions: Object = {}): Promise<MasterDoc> {
         return await kroilonDatabase.connect()
             .then(() => kroilonDatabase.Masters.findOne(conditions))
-            .catch((err) => { return err; });
+            .catch((err) => { throw err; });
     }
 
     async create(masterDto: MasterDoc): Promise<MasterDoc> {
         return await kroilonDatabase.connect()
             .then(() => kroilonDatabase.Masters.create(masterDto))
-            .catch((err) => { return err; });
+            .catch((err) => { throw err; });
     }
 
     async findAll(): Promise<MasterDoc[]> {

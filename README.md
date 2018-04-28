@@ -1,7 +1,7 @@
 
 [![Build Status](https://travis-ci.org/LandOfKroilon/KroilonApiV2.svg?branch=dev)](https://travis-ci.org/LandOfKroilon/KroilonApiV2)
 
-An hypermedia API that supports [Collection+JSON](https://github.com/collection-json/spec) as media types.
+An hypermedia API that supports [Collection+JSON](https://github.com/collection-json/spec) and [Siren](https://github.com/kevinswiber/siren) as media types.
 
 Uses TravisCI as CI build tool. [InversifyJS](https://inversify.io/) is responsible to handle dependency injection. Jest is the testing framework.
 

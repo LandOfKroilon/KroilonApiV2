@@ -4,7 +4,7 @@ import Template from "./Template";
 import Item from "./Item";
 
 
-export const MediaType = "application/vnd.collection+json";
+export const CJMediaType = "application/vnd.collection+json";
 
 export class Collection {
 
@@ -20,7 +20,7 @@ export class Collection {
     constructor( href: string) {
         this.items = [];
         this.links = [];
-        this.queries = [];
+        // this.queries = [];
         this.version = "1.0";
 
         this.href = href;

@@ -9,13 +9,13 @@ export class AcademyRepository implements IAcademyRepository {
     async findOne(conditions?: Object): Promise<AcademyDoc> {
         return await kroilonDatabase.connect()
             .then(() => kroilonDatabase.Academy.findOne(conditions))
-            .catch((err) => { return err; });
+            .catch((err) => { throw err; });
     }
 
     async create(doc: AcademyDoc): Promise<AcademyDoc> {
         return await kroilonDatabase.connect()
             .then(() => kroilonDatabase.Academy.create(doc))
-            .catch((err) => { return err; });
+            .catch((err) => { throw err; });
     }
 
     async getCurrentAcademy(): Promise<AcademyDoc> {

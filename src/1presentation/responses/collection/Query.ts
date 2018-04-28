@@ -9,8 +9,11 @@ export default class Query {
 
     readonly data: Data[];
 
-    constructor() {
+    constructor(rel: string, href: string, prompt: string) {
         this.data = [];
+        this.rel = rel;
+        this.href = href;
+        this.prompt = prompt;
     }
 
 }

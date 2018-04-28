@@ -28,13 +28,14 @@ export class MasterService implements IMasterService {
                 }
             })
             .then(() => this.masterRepository.create({
-                id: content.id,
-                name: content.name,
-                email: content.email,
-                avatar: content.avatar,
-                password: content.password
-            }))
-            .then((m) => this.toDTO(m))
+                    id: content.id,
+                    name: content.name,
+                    email: content.email,
+                    avatar: content.avatar,
+                    password: content.password
+                })
+                .then((m) => this.toDTO(m))
+                .catch((err) => { throw err; }))
             .catch((err) => { throw err; } );
     }
 

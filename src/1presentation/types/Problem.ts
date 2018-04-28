@@ -1,6 +1,6 @@
-/**
- *
- */
+
+export const ProblemJsonMediaType: string =  "application/problem+json";
+
 export class Problem {
 
     /**
@@ -38,10 +38,6 @@ export class Problem {
      */
     readonly instance: string;
 
-    /**
-     * Content-Type used by this response type.
-     */
-    readonly contentType: string =  "application/problem+json";
 
     constructor(status: Number, title: string, detail: string, instance: string, type: string = "about:blank") {
         this.status = status;
