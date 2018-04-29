@@ -13,6 +13,7 @@ import Template from "../responses/collection/Template";
 import Entity, { SirenMediaType } from "../responses/siren/Entity";
 import Link from "../responses/siren/Link";
 import { Utils } from "../../config/Utils";
+import CjLink from "../responses/collection/Link";
 
 @injectable()
 export class MasterController implements RegistrableController {
@@ -88,6 +89,7 @@ export class MasterController implements RegistrableController {
                     });
 
                     collection.template = this.buildTemplate();
+                    collection.links.push(new CjLink("self", collectionHref));
 
                     return res.status(200).send({collection});
                 })

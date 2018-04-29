@@ -134,6 +134,8 @@ describe(url, () => {
             // collection must provide a template for clients
             expect(response.body.collection.template).toBeDefined();
             expect(response.body.collection.template.data.length).toBe(5);
+            expect(response.body.collection.links).toBeDefined();
+            expect(response.body.collection.links.length).toBe(1);
 
             done();
         });

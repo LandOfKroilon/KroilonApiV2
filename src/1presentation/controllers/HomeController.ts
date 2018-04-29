@@ -9,7 +9,11 @@ export class HomeController implements RegistrableController {
     register(app: express.Application): void {
         app.route("/")
             .get(async(_: Request, res: Response) => {
-                res.send("root");
+                const apiDiscoveryRes = {
+                    admins_url: `${process.env.BASE_URI}/academy/admin`
+                    // admin_url: `${process.env.BASE_URI}/academy/admin/{id}`
+                };
+                res.send(apiDiscoveryRes);
             });
     }
 

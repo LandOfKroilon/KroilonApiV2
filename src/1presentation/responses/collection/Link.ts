@@ -1,15 +1,12 @@
-export default class Link {
-    readonly name: string;
-    readonly render: string;
+export default class CjLink {
+    name?: string;
+    render?: string;
     readonly rel: string;
     readonly href: string;
-    readonly prompt: string;
+    prompt?: string;
 
-    constructor(name: string, render: string, rel: string, href: string, prompt: string) {
-        this.name = name;
-        this.render = render;
+    constructor(rel: string, href: string) {
         this.rel = rel;
         this.href = href;
-        this.prompt = prompt;
     }
 }
