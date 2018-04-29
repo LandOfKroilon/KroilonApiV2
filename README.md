@@ -10,7 +10,7 @@ Uses TravisCI as CI build tool. [InversifyJS](https://inversify.io/) is responsi
 
 `cd <project_name>`
 
-`npm install`
+`yarn install`
 
 ## Start your mongoDB local server
 
@@ -18,27 +18,15 @@ Uses TravisCI as CI build tool. [InversifyJS](https://inversify.io/) is responsi
 
 ## Build and run the project
 
-`npm run build`
+`yarn run build`
 
-`npm start`
+`yarn start`
 
 Navigate to `_http://localhost:3000_`
 
 ## Run tests
 
-`npm install -g node-mongo-seeds`
-
-`seed`
-
 `npm run build`
 
 `npm run test`
 
-
-## Packages
-
-* TravisCI as CI tool
-
-* [InversifyJS](https://inversify.io/) to handle Dependency Injection.
-
-* Jest as the testing framework.
