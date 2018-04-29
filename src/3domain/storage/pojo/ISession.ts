@@ -1,5 +1,0 @@
-interface ISession {
-
-}
-
-export = ISession;
