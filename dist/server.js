@@ -1,25 +1,20 @@
 #!/usr/bin/env node
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-}
 Object.defineProperty(exports, "__esModule", { value: true });
-const app_1 = __importDefault(require("./app"));
-const debug_1 = __importDefault(require("debug"));
+/**
+ * Module dependencies.
+ */
+const app_1 = require("./app");
+const debugModule = require("debug");
 const http = require("http");
-const debug = debug_1.default("kroilonv2:server");
+const debug = debugModule("kroilonv2:server");
 /**
  * Get port from environment and store in Express.
  */
 const port = normalizePort(process.env.PORT || 3000);
 app_1.default.set("port", port);
-/**
- * Create HTTP server.
- */
 const server = http.createServer(app_1.default);
-/**
- * Listen on provided port, on all network interfaces.
- */
+// Listen on provided port, on all network interfaces.
 server.listen(port);
 server.on("error", onError);
 server.on("listening", onListening);
@@ -45,9 +40,7 @@ function onError(error) {
     if (error.syscall !== "listen") {
         throw error;
     }
-    const bind = typeof port === "string"
-        ? "Pipe " + port
-        : "Port " + port;
+    const bind = typeof port === "string" ? "Pipe " + port : "Port " + port;
     // handle specific listen errors with friendly messages
     switch (error.code) {
         case "EACCES":
@@ -67,9 +60,7 @@ function onError(error) {
  */
 function onListening() {
     const addr = server.address();
-    const bind = typeof addr === "string"
-        ? "pipe " + addr
-        : "port " + addr.port;
+    const bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
     debug(`Listening on ${bind}`);
 }
 //# sourceMappingURL=server.js.map
