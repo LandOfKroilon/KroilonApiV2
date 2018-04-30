@@ -31,6 +31,7 @@
     "express": "~4.15.5",
     "faker": "^4.1.0",
     "hbs": "~4.0.1",
+    "iridium": "^8.0.0-alpha.14",
     "inversify": "^4.13.0",
     "mongoose": "^5.0.12",
     "passport": "^0.4.0",
