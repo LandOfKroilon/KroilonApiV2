@@ -1,6 +1,6 @@
 {
   "name": "kroilonv2",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "npm run serve",
@@ -21,7 +21,6 @@
   },
   "dependencies": {
     "@types/body-parser": "^1.16.8",
-    "@types/cookie-parser": "^1.4.1",
     "@types/debug": "0.0.30",
     "@types/errorhandler": "0.0.32",
     "@types/jest": "^22.2.0",
