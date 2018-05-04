@@ -11,22 +11,12 @@ An hypermedia API that supports [Collection+JSON](https://github.com/collection-
 - [Iridium](https://github.com/SierraSoftworks/Iridium) - TypeScript Mongo ODM
 - [winston](https://github.com/winstonjs/winston) - logging framework
 
+
 ## Architecture
 
 * controller -> service -> repository
 
 The repository layer produces and accepts DTOs, the service and controller layers produce and accept models.
-
-
-
-
-## Install dependencies
-
-`npm install`
-
-## Start your mongoDB local server
-
-`mongod`
 
 ## Build and run the project
 
