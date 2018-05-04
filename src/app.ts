@@ -7,6 +7,8 @@ import container from "./config/inversify.config";
 const errorHandler = require("errorhandler");
 import TYPES from "./config/types";
 import { RegistrableController } from "./1presentation/controllers/RegistrableController";
+import { logger } from "./config/Logger";
+
 
 const app: express.Application = express();
 
@@ -31,8 +33,7 @@ if (process.env.NODE_ENV === "dev") {
 else {
     // setup express middleware logging and error handling
     app.use(function (err: Error, _: express.Request, __: express.Response, next: express.NextFunction) {
-        // Replace with Winston _logger.error(err.stack);~
-        console.log(err.stack);
+        logger.error(err.stack);
         next(err);
     });
 }
@@ -47,7 +48,6 @@ app.use(function(_, res, next) {
   res.status(404);
   next(err);
 });
-
 
 
 export default app;

@@ -20,6 +20,17 @@ export class MasterService implements IMasterService {
             });
     }
 
+    findMaster(conditions: Object = {}): Promise<MasterDTO> {
+        return this.masterRepository.findOne(conditions)
+            .then((doc) => {
+                if (doc) {
+                    return doc;
+                }
+                throw new Error("document not found");
+            })
+            .catch((err) => { throw err; } );
+    }
+
     createMaster(content: MasterDTO): Promise<MasterDTO> {
         return this.masterRepository.findOne({id: content.id})
             .then((doc) => {

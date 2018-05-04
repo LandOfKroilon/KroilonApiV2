@@ -78,7 +78,7 @@ describe(url, () => {
 
             expect(response.body.properties).toBeDefined();
             expect(response.body.links).toBeDefined();
-            expect(response.body.links.length).toBe(1);
+            expect(response.body.links.length).toBe(2);
 
             done();
         });
@@ -136,6 +136,26 @@ describe(url, () => {
             expect(response.body.collection.template.data.length).toBe(5);
             expect(response.body.collection.links).toBeDefined();
             expect(response.body.collection.links.length).toBe(1);
+
+            done();
+        });
+    });
+
+    describe("GET by ID", () => {
+        test("It should return a specific resource", async done => {
+
+            const response = await request(app).get(`${url}/${adminsToSeed[0].id}`);
+            expect(response.statusCode).toBe(200);
+            expect(response.type).toBe("application/vnd.siren+json");
+            expect(response.body).toBeDefined();
+
+            expect(response.body.class.length).toBe(1);
+            expect(response.body.class[0]).toBe("Admin");
+
+            expect(response.body.properties).toBeDefined();
+
+            expect(response.body.actions).toBeUndefined();
+            expect(response.body.links.length).toBe(2);
 
             done();
         });
