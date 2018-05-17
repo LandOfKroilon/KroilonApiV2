@@ -6,6 +6,7 @@ import { IMasterService } from "../../2application/interfaces/IMasterService";
 import { logger } from "../../config/Logger";
 import { Utils } from "../../config/Utils";
 import TYPES from "../../config/types";
+import { Problem, ProblemJsonMediaType } from "../responses/Problem";
 import { CJMediaType, Collection } from "../responses/collection/Collection";
 import Data from "../responses/collection/Data";
 import Item from "../responses/collection/Item";
@@ -13,7 +14,6 @@ import CjLink from "../responses/collection/Link";
 import Template from "../responses/collection/Template";
 import Entity, { SirenMediaType } from "../responses/siren/Entity";
 import Link from "../responses/siren/Link";
-import { Problem, ProblemJsonMediaType } from "../types/Problem";
 import { RegistrableController } from "./RegistrableController";
 
 @injectable()

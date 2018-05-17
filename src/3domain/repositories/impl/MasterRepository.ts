@@ -1,8 +1,7 @@
-import { IMasterRepository } from "../interfaces/IMasterRepository";
-import { MasterDoc } from "../../models/MasterSchema";
 import { injectable } from "inversify";
+import { MasterDoc } from "../../models/MasterSchema";
 import { kroilonDatabase } from "../KroilonDatabase";
-import { logger } from "../../../config/Logger";
+import { IMasterRepository } from "../interfaces/IMasterRepository";
 
 @injectable()
 export class MasterRepository implements IMasterRepository {
@@ -16,10 +15,7 @@ export class MasterRepository implements IMasterRepository {
     async findOne(conditions: Object): Promise<MasterDoc> {
         return await kroilonDatabase.connect()
             .then(() => kroilonDatabase.Masters.findOne(conditions))
-            .then((theOne) => {
-                logger.info(JSON.stringify(theOne));
-                return theOne;
-            })
+            .then((theOne) => theOne )
             .catch((err) => { throw err; });
     }
 

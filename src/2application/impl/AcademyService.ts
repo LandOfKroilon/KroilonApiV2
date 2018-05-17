@@ -1,9 +1,9 @@
-import { IAcademyService } from "../interfaces/IAcademyService";
-import { AcademyDTO } from "../dto/AcademyDTO";
-import { injectable, inject } from "inversify";
-import TYPES from "../../config/types";
-import { IAcademyRepository } from "../../3domain/repositories/interfaces/IAcademyRepository";
+import { inject, injectable } from "inversify";
 import { AcademyDoc } from "../../3domain/models/AcademySchema";
+import { IAcademyRepository } from "../../3domain/repositories/interfaces/IAcademyRepository";
+import TYPES from "../../config/types";
+import { AcademyDTO } from "../dto/AcademyDTO";
+import { IAcademyService } from "../interfaces/IAcademyService";
 
 @injectable()
 export class AcademyService implements IAcademyService {
@@ -13,7 +13,18 @@ export class AcademyService implements IAcademyService {
 
     getAcademy(): Promise<AcademyDTO> {
         return this.academyRepository.getCurrentAcademy()
-            .then((doc) => this.toDTO(doc))
+            .then((doc) => {
+                return doc != undefined ? this.toDTO(doc) : undefined;
+            })
+            .catch((err) => { throw err; });
+    }
+
+
+    getAcademyByName(name: string): Promise<AcademyDTO> {
+        return this.academyRepository.findOne({name})
+            .then((doc) => {
+                return doc != undefined ? this.toDTO(doc) : undefined;
+            })
             .catch((err) => { throw err; });
     }
 

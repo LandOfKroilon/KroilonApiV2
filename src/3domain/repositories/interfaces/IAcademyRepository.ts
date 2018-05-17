@@ -1,9 +1,6 @@
 import { AcademyDoc } from "../../models/AcademySchema";
+import { BaseRepository } from "./BaseRepository";
 
-export interface IAcademyRepository {
-
-    findOne(conditions?: Object): Promise<AcademyDoc>;
-
+export interface IAcademyRepository extends BaseRepository<AcademyDoc> {
     getCurrentAcademy(): Promise<AcademyDoc>;
-    create(doc: AcademyDoc): Promise<AcademyDoc>;
-}
+ }

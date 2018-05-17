@@ -1,9 +1,9 @@
-import * as assert from "assert";
+import "reflect-metadata";
+import { MasterRepository } from "../../src/3domain/repositories/impl/MasterRepository";
+import { IMasterRepository } from "../../src/3domain/repositories/interfaces/IMasterRepository";
+import app from "../../src/app";
 const request = require("supertest");
 const faker = require("faker");
-import app from "../../src/app";
-import { IMasterRepository } from "../../src/3domain/repositories/interfaces/IMasterRepository";
-import { MasterRepository } from "../../src/3domain/repositories/impl/MasterRepository";
 
 const url = "/academy/admin";
 
@@ -32,8 +32,6 @@ const adminsToSeed = [
         password: faker.internet.password()
     }
 ];
-
-
 
 beforeAll((done) => {
     masterRepo = new MasterRepository();

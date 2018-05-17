@@ -4,7 +4,7 @@ import { TraineeDoc } from "./TraineeSchema";
 export interface AcademyDoc {
     name: string;
     trainees: TraineeDoc[];
-    createdOn?: Date; // TODO extract to a base class
+    createdOn?: number; // TODO extract to a base class
 }
 
 @Collection("academy")
@@ -19,10 +19,10 @@ export class AcademyMongoSchema extends Instance<AcademyDoc, AcademyMongoSchema>
     @Property(Array, true)
     public trainees: TraineeDoc[];
 
-    @Property(Date, false)
-    public createdOn: Date;
+    @Property(Number, false)
+    public createdOn: number;
 
     static onCreating(doc: AcademyDoc) {
-        doc.createdOn = new Date();
+        doc.createdOn = new Date().getTime();
     }
 }
