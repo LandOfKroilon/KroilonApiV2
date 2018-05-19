@@ -51,7 +51,10 @@ export class AcademyController implements RegistrableController {
             this.academyService.getAcademy()
                 .then((academy) => {
                     if (academy == undefined) {
-                        return this.handleNotFoundRequest(req.params.name, res);
+                        const response = Utils.handleNotFoundRequest(req.params.name);
+                        return res.status(response.status)
+                           .type(ProblemJsonMediaType)
+                           .send(response);
                     }
                     const entity = this.buildEntity(academy);
                     const selfHref = Utils.buildSelfURI(req);
@@ -76,7 +79,10 @@ export class AcademyController implements RegistrableController {
             this.academyService.getAcademyByName(req.params.name)
                 .then((academy) => {
                     if (academy == undefined) {
-                        return this.handleNotFoundRequest(req.params.name, res);
+                        const response = Utils.handleNotFoundRequest(req.params.name);
+                        return res.status(response.status)
+                           .type(ProblemJsonMediaType)
+                           .send(response);
                     }
                     const entity = this.buildEntity(academy);
                     const selfHref = Utils.buildSelfURI(req);
@@ -99,12 +105,21 @@ export class AcademyController implements RegistrableController {
         return async (req: express.Request, res: express.Response) => {
 
             if (Object.keys(req.body).length === 0) {
-                this.handleEmptyRequest(res);
+                const response = Utils.handleEmptyRequest();
+                res.status(response.status)
+                   .type(ProblemJsonMediaType)
+                   .send(response);
                 return;
             }
 
             this.academyService.createAcademy(req.body)
-                .then((academy) => res.status(201).send(academy))
+                .then((academy) => {
+
+                    const entity = this.buildEntity(academy);
+                    const selfHref = Utils.buildSelfURI(req);
+                    entity.links.push(new Link("self", selfHref));
+                    return res.status(201).type(SirenMediaType).send(entity);
+                })
                 .catch((err) => {
 
                     if (err.isIvalidationError) {
@@ -130,24 +145,6 @@ export class AcademyController implements RegistrableController {
         return entity;
     }
 
-    private handleEmptyRequest(res: express.Response) {
-        const code = 400;
-        const response = new Problem(code,
-            "/probs/properties-not-found",
-            "Request body cannot be empty",
-            "Request body cannot be empty");
-        logger.info(JSON.stringify(response));
-        res.status(code).type(ProblemJsonMediaType).send(response);
-    }
 
-    private handleNotFoundRequest(param: string, res: express.Response) {
-        const code = 404;
-        const response = new Problem(code,
-            "/probs/resource-not-found",
-            "Resource not found",
-            `Resource with id ${param} could not be found`);
-        logger.info(JSON.stringify(response));
-        res.status(code).type(ProblemJsonMediaType).send(response);
-    }
 
 }

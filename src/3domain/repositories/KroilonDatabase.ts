@@ -11,4 +11,4 @@ class KroilonDatabase extends Core {
 }
 
 export const kroilonDatabase =
-    new KroilonDatabase(process.env.MONGODB_URI, { database: process.env.DATABASE });
+    new KroilonDatabase("mongodb://localhost:27017/kroilon_local", { database: process.env.DATABASE });
