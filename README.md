@@ -1,5 +1,6 @@
 
 [![Build Status](https://travis-ci.org/LandOfKroilon/KroilonApiV2.svg?branch=dev)](https://travis-ci.org/LandOfKroilon/KroilonApiV2)
+[![Coverage Status](https://coveralls.io/repos/github/LandOfKroilon/KroilonApiV2/badge.svg?branch=master)](https://coveralls.io/github/LandOfKroilon/KroilonApiV2?branch=master)
 
 An hypermedia API that supports [Collection+JSON](https://github.com/collection-json/spec) and [Siren](https://github.com/kevinswiber/siren) as media types.
 
