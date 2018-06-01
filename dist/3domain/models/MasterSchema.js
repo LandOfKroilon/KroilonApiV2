@@ -37,9 +37,9 @@ __decorate([
     __metadata("design:type", String)
 ], MasterMongoSchema.prototype, "avatar", void 0);
 __decorate([
-    iridium_1.Property(String, true),
+    iridium_1.Property(String, false),
     __metadata("design:type", String)
-], MasterMongoSchema.prototype, "password", void 0);
+], MasterMongoSchema.prototype, "academyId", void 0);
 __decorate([
     iridium_1.Property(Date, false),
     __metadata("design:type", Date)

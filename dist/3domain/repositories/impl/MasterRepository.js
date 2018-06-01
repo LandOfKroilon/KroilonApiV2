@@ -24,10 +24,11 @@ let MasterRepository = class MasterRepository {
                 .catch((err) => { throw err; });
         });
     }
-    findOne(conditions = {}) {
+    findOne(conditions) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield KroilonDatabase_1.kroilonDatabase.connect()
                 .then(() => KroilonDatabase_1.kroilonDatabase.Masters.findOne(conditions))
+                .then((theOne) => theOne)
                 .catch((err) => { throw err; });
         });
     }
@@ -40,13 +41,13 @@ let MasterRepository = class MasterRepository {
     }
     findAll() {
         return __awaiter(this, void 0, void 0, function* () {
-            const masterDTOs = yield KroilonDatabase_1.kroilonDatabase.connect()
+            return yield KroilonDatabase_1.kroilonDatabase.connect()
                 .then(() => KroilonDatabase_1.kroilonDatabase.Masters.find().toArray())
+                .then((docs) => docs)
                 .catch((_) => {
                 // log err
                 return [];
             });
-            return masterDTOs;
         });
     }
 };

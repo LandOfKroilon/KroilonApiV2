@@ -14,9 +14,34 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const KroilonDatabase_1 = require("../KroilonDatabase");
 const inversify_1 = require("inversify");
+const KroilonDatabase_1 = require("../KroilonDatabase");
 let AcademyRepository = class AcademyRepository {
+    constructor() {
+        this.ASCENDING = 1;
+    }
+    findAll() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const masterDTOs = yield KroilonDatabase_1.kroilonDatabase.connect()
+                .then(() => KroilonDatabase_1.kroilonDatabase.Academy.find().toArray())
+                .catch((err) => { throw err; });
+            return masterDTOs;
+        });
+    }
+    getCurrentAcademyId() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.getCurrentAcademy()
+                .then((doc) => doc._id)
+                .catch((err) => { return err; });
+        });
+    }
+    deleteMany(conditions) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield KroilonDatabase_1.kroilonDatabase.connect()
+                .then(() => KroilonDatabase_1.kroilonDatabase.Academy.remove(conditions))
+                .catch((err) => { throw err; });
+        });
+    }
     findOne(conditions) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield KroilonDatabase_1.kroilonDatabase.connect()
@@ -31,10 +56,20 @@ let AcademyRepository = class AcademyRepository {
                 .catch((err) => { throw err; });
         });
     }
+    update(doc) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield KroilonDatabase_1.kroilonDatabase.connect()
+                .then(() => KroilonDatabase_1.kroilonDatabase.Academy.update({ name: doc.name }, doc))
+                .catch((err) => { throw err; });
+        });
+    }
     getCurrentAcademy() {
         return __awaiter(this, void 0, void 0, function* () {
             return yield KroilonDatabase_1.kroilonDatabase.connect()
-                .then(() => KroilonDatabase_1.kroilonDatabase.Academy.find().sort({ createdOn: -1 }).one)
+                .then(() => KroilonDatabase_1.kroilonDatabase.Academy.find()
+                .sort({ createdOn: this.ASCENDING })
+                .one())
+                .then((doc) => doc)
                 .catch((err) => { return err; });
         });
     }

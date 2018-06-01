@@ -20,8 +20,9 @@ let HomeController = class HomeController {
         app.route("/")
             .get((_, res) => __awaiter(this, void 0, void 0, function* () {
             const apiDiscoveryRes = {
-                admins_url: `${process.env.BASE_URI}/academy/admin`
-                // admin_url: `${process.env.BASE_URI}/academy/admin/{id}`
+                admins_url: `${process.env.BASE_URI}/academy/admin`,
+                admin_url: `${process.env.BASE_URI}/academy/admin/{id}`,
+                academy_url: `${process.env.BASE_URI}/academy`,
             };
             res.send(apiDiscoveryRes);
         }));

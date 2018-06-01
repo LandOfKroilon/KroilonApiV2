@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const iridium_1 = require("iridium");
 let AcademyMongoSchema = class AcademyMongoSchema extends iridium_1.Instance {
     static onCreating(doc) {
-        doc.createdOn = new Date();
+        doc.createdOn = new Date().getTime();
     }
 };
 __decorate([
@@ -24,12 +24,16 @@ __decorate([
     __metadata("design:type", String)
 ], AcademyMongoSchema.prototype, "name", void 0);
 __decorate([
-    iridium_1.Property(Array, true),
+    iridium_1.Property(Array, false),
+    __metadata("design:type", Array)
+], AcademyMongoSchema.prototype, "masters", void 0);
+__decorate([
+    iridium_1.Property(Array, false),
     __metadata("design:type", Array)
 ], AcademyMongoSchema.prototype, "trainees", void 0);
 __decorate([
-    iridium_1.Property(Date, false),
-    __metadata("design:type", Date)
+    iridium_1.Property(Number, false),
+    __metadata("design:type", Number)
 ], AcademyMongoSchema.prototype, "createdOn", void 0);
 AcademyMongoSchema = __decorate([
     iridium_1.Collection("academy"),

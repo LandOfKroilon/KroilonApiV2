@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 const inversify_config_1 = require("./config/inversify.config");
 const errorHandler = require("errorhandler");
 const types_1 = require("./config/types");
+const Logger_1 = require("./config/Logger");
 const app = express();
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -27,8 +28,7 @@ if (process.env.NODE_ENV === "dev") {
 else {
     // setup express middleware logging and error handling
     app.use(function (err, _, __, next) {
-        // Replace with Winston _logger.error(err.stack);~
-        console.log(err.stack);
+        Logger_1.logger.error(err.stack);
         next(err);
     });
 }

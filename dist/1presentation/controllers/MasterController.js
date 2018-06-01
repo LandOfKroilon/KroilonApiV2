@@ -21,41 +21,46 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const inversify_1 = require("inversify");
+const Logger_1 = require("../../config/Logger");
+const Utils_1 = require("../../config/Utils");
 const types_1 = require("../../config/types");
-const Problem_1 = require("../types/Problem");
+const Problem_1 = require("../responses/Problem");
 const Collection_1 = require("../responses/collection/Collection");
-const Item_1 = require("../responses/collection/Item");
 const Data_1 = require("../responses/collection/Data");
+const Item_1 = require("../responses/collection/Item");
+const Link_1 = require("../responses/collection/Link");
 const Template_1 = require("../responses/collection/Template");
 const Entity_1 = require("../responses/siren/Entity");
-const Link_1 = require("../responses/siren/Link");
-const Utils_1 = require("../../config/Utils");
-const Link_2 = require("../responses/collection/Link");
+const Link_2 = require("../responses/siren/Link");
 let MasterController = class MasterController {
     constructor(masterService) {
+        // routes
+        this.adminsResource = Object.freeze("/academy/admin");
         this.masterService = masterService;
     }
     register(app) {
-        app.route("/academy/admin")
-            .get(this.handleGetMasterResource())
-            .post(this.handleCreateMasterResource());
+        app.route(this.adminsResource)
+            .get(this.handleGetMasters())
+            .post(this.handleCreateResource());
+        app.route(`${this.adminsResource}/:id`)
+            .get(this.handleGetMasterById());
     }
     /**
      * Method to handle the POST request to the uri "/academy/admin".
      * The process of data is expected to create a new Master resource.
      */
-    handleCreateMasterResource() {
+    handleCreateResource() {
         return (req, res) => __awaiter(this, void 0, void 0, function* () {
             this.masterService.createMaster(req.body)
                 .then((newMaster) => {
-                const collectionHref = Utils_1.Utils.buildSelfURI(req);
-                const entity = new Entity_1.default();
-                entity.class = ["Admin"];
-                entity.properties = newMaster;
-                entity.links.push(new Link_1.default("self", `${collectionHref}/${newMaster.id}`));
+                const entity = this.buildEntity(newMaster);
+                const selfHref = Utils_1.Utils.buildSelfURI(req);
+                entity.links.push(new Link_2.default("self", selfHref));
+                entity.links.push(new Link_2.default("collection", `${req.protocol}://${req.hostname}:${process.env.PORT}${this.adminsResource}`));
                 res.status(201).type(Entity_1.SirenMediaType).send(entity);
             })
                 .catch((error) => {
+                Logger_1.logger.info(error);
                 // some property is null or of some unexpected value
                 if (error.isIvalidationError) {
                     const response = new Problem_1.Problem(400, "/probs/defined-non-value", "Some property is null or contains some unexpected value", error.messages[0]);
@@ -73,7 +78,7 @@ let MasterController = class MasterController {
      * Method to handle the GET request to the uri "/academy/admin".
      * It returns an array with all the masters found in DB.
      */
-    handleGetMasterResource() {
+    handleGetMasters() {
         return (req, res) => __awaiter(this, void 0, void 0, function* () {
             this.masterService.getMasters()
                 .then((masters) => {
@@ -84,11 +89,37 @@ let MasterController = class MasterController {
                     collection.items.push(this.buildNewItem(`${collectionHref}/${master.id}`, master));
                 });
                 collection.template = this.buildTemplate();
-                collection.links.push(new Link_2.default("self", collectionHref));
+                collection.links.push(new Link_1.default("self", collectionHref));
                 return res.status(200).send({ collection });
             })
                 // TODO handle better this error
-                .catch((err) => res.send(err));
+                .catch((error) => {
+                Logger_1.logger.error(error);
+                res.send(error);
+            });
+        });
+    }
+    handleGetMasterById() {
+        return (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const id = parseInt(req.params.id);
+            this.masterService.findMaster({ id })
+                .then((master) => {
+                if (!master) {
+                    const response = Utils_1.Utils.handleNotFoundRequest(req.params.id);
+                    return res.status(response.status)
+                        .type(Problem_1.ProblemJsonMediaType)
+                        .send(response);
+                }
+                const entity = this.buildEntity(master);
+                const selfHref = Utils_1.Utils.buildSelfURI(req);
+                entity.links.push(new Link_2.default("self", selfHref));
+                entity.links.push(new Link_2.default("collection", `${req.protocol}://${req.hostname}:${process.env.PORT}${this.adminsResource}`));
+                return res.status(200).type(Entity_1.SirenMediaType).send(entity);
+            })
+                .catch((error) => {
+                Logger_1.logger.error(error);
+                res.send(error);
+            });
         });
     }
     buildTemplate() {
@@ -107,8 +138,15 @@ let MasterController = class MasterController {
         item.data.push(new Data_1.default("name", master.name, "Admin's name"));
         item.data.push(new Data_1.default("avatar", master.avatar, "Admin's avatar uri"));
         item.data.push(new Data_1.default("email", master.email, "Admin's email"));
+        item.data.push(new Data_1.default("academyId", master.academyId, "Admin's active academy id"));
         item.data.push(new Data_1.default("createdOn", master.createdOn.toLocaleDateString(), "When the admin was created"));
         return item;
+    }
+    buildEntity(newMaster) {
+        const entity = new Entity_1.default();
+        entity.class = ["Admin"];
+        entity.properties = newMaster;
+        return entity;
     }
 };
 MasterController = __decorate([

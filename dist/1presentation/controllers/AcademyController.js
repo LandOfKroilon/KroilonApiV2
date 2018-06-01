@@ -21,23 +21,126 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const inversify_1 = require("inversify");
+const Logger_1 = require("../../config/Logger");
+const Utils_1 = require("../../config/Utils");
 const types_1 = require("../../config/types");
+const Problem_1 = require("../responses/Problem");
+const Entity_1 = require("../responses/siren/Entity");
+const Link_1 = require("../responses/siren/Link");
 let AcademyController = class AcademyController {
     constructor(academyService) {
         this.academyService = academyService;
     }
     register(app) {
         app.route("/academy")
-            .get((_, res) => __awaiter(this, void 0, void 0, function* () {
+            .get(this.handleGetAcademy())
+            .patch(this.handleUpdateAcademy())
+            .post(this.handleCreateAcademy());
+        app.route("/academy/:name")
+            .get(this.handleGetAcademyByName());
+    }
+    handleUpdateAcademy() {
+        return (req, res) => __awaiter(this, void 0, void 0, function* () {
+            if (Object.keys(req.body).length === 0) {
+                const response = Utils_1.Utils.handleEmptyRequest();
+                res.status(response.status)
+                    .type(Problem_1.ProblemJsonMediaType)
+                    .send(response);
+                return;
+            }
+            this.academyService.updateAcademy(req.body)
+                .then((updatedRows) => {
+                console.log(updatedRows);
+                return res.status(200).send();
+            })
+                .catch((err) => {
+                if (err.isIvalidationError) {
+                    const response = new Problem_1.Problem(400, "/probs/defined-non-value", "Some property is null or contains some unexpected value", err.messages[0]);
+                    res.status(400).type(Problem_1.ProblemJsonMediaType).send(response);
+                    return;
+                }
+                res.status(500).send(err);
+            });
+        });
+    }
+    handleGetAcademy() {
+        return (req, res) => __awaiter(this, void 0, void 0, function* () {
             this.academyService.getAcademy()
-                .then((academy) => res.status(200).send(academy))
-                .catch((err) => res.status(500).send(err));
-        }))
-            .post((req, res) => __awaiter(this, void 0, void 0, function* () {
+                .then((academy) => {
+                if (academy == undefined) {
+                    const response = Utils_1.Utils.handleNotFoundRequest(req.params.name);
+                    return res.status(response.status)
+                        .type(Problem_1.ProblemJsonMediaType)
+                        .send(response);
+                }
+                const entity = this.buildEntity(academy);
+                const selfHref = Utils_1.Utils.buildSelfURI(req);
+                entity.links.push(new Link_1.default("self", selfHref));
+                return res.status(200).type(Entity_1.SirenMediaType).send(entity);
+            })
+                .catch((err) => {
+                const code = 500;
+                const response = new Problem_1.Problem(code, "/probs/object-error", "object-error", "object-error");
+                Logger_1.logger.info(JSON.stringify(err));
+                res.status(code).type(Problem_1.ProblemJsonMediaType).send(response);
+            });
+        });
+    }
+    handleGetAcademyByName() {
+        return (req, res) => __awaiter(this, void 0, void 0, function* () {
+            this.academyService.getAcademyByName(req.params.name)
+                .then((academy) => {
+                if (academy == undefined) {
+                    const response = Utils_1.Utils.handleNotFoundRequest(req.params.name);
+                    return res.status(response.status)
+                        .type(Problem_1.ProblemJsonMediaType)
+                        .send(response);
+                }
+                const entity = this.buildEntity(academy);
+                const selfHref = Utils_1.Utils.buildSelfURI(req);
+                entity.links.push(new Link_1.default("self", selfHref));
+                return res.status(200).type(Entity_1.SirenMediaType).send(entity);
+            })
+                .catch((err) => {
+                const code = 500;
+                const response = new Problem_1.Problem(code, "/probs/object-error", "object-error", "object-error");
+                Logger_1.logger.info(JSON.stringify(err));
+                res.status(code).type(Problem_1.ProblemJsonMediaType).send(response);
+            });
+        });
+    }
+    handleCreateAcademy() {
+        return (req, res) => __awaiter(this, void 0, void 0, function* () {
+            if (Object.keys(req.body).length === 0) {
+                const response = Utils_1.Utils.handleEmptyRequest();
+                res.status(response.status)
+                    .type(Problem_1.ProblemJsonMediaType)
+                    .send(response);
+                return;
+            }
             this.academyService.createAcademy(req.body)
-                .then((academy) => res.status(201).send(academy))
-                .catch((err) => res.status(500).send(err));
-        }));
+                .then((academy) => {
+                const entity = this.buildEntity(academy);
+                const selfHref = Utils_1.Utils.buildSelfURI(req);
+                entity.links.push(new Link_1.default("self", selfHref));
+                return res.status(201).type(Entity_1.SirenMediaType).send(entity);
+            })
+                .catch((err) => {
+                if (err.isIvalidationError) {
+                    const response = new Problem_1.Problem(400, "/probs/defined-non-value", "Some property is null or contains some unexpected value", err.messages[0]);
+                    res.status(400).type(Problem_1.ProblemJsonMediaType).send(response);
+                    return;
+                }
+                res.status(500).send(err);
+            });
+        });
+    }
+    buildEntity(doc) {
+        Logger_1.logger.info(JSON.stringify(doc));
+        const entity = new Entity_1.default();
+        entity.class = ["Academy"];
+        entity.properties = doc;
+        return entity;
     }
 };
 __decorate([

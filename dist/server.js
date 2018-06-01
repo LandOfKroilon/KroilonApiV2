@@ -5,9 +5,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * Module dependencies.
  */
 const app_1 = require("./app");
-const debugModule = require("debug");
 const http = require("http");
-const debug = debugModule("kroilonv2:server");
+const Logger_1 = require("./config/Logger");
 /**
  * Get port from environment and store in Express.
  */
@@ -61,6 +60,6 @@ function onError(error) {
 function onListening() {
     const addr = server.address();
     const bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
-    debug(`Listening on ${bind}`);
+    Logger_1.logger.info(`Listening on ${bind}`);
 }
 //# sourceMappingURL=server.js.map

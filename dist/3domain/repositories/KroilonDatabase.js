@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const iridium_1 = require("iridium");
-const MasterSchema_1 = require("../models/MasterSchema");
 const AcademySchema_1 = require("../models/AcademySchema");
+const MasterSchema_1 = require("../models/MasterSchema");
 class KroilonDatabase extends iridium_1.Core {
     constructor() {
         super(...arguments);

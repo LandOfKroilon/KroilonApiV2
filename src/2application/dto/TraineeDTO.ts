@@ -6,6 +6,7 @@ export class TraineeDTO {
     readonly avatar: string;
     readonly hash: string;
     readonly businessUnit: string;
+    readonly skill: string;
     readonly profile: string;
     readonly createdOn?: Date;
 
@@ -17,6 +18,7 @@ export class TraineeDTO {
         hash: string,
         profile: string,
         businessUnit: string,
+        skill: string,
         createdOn: Date = undefined) {
             this.id = id;
             this.name = name;
@@ -25,6 +27,7 @@ export class TraineeDTO {
             this.hash = hash;
             this.profile = profile;
             this.businessUnit = businessUnit;
+            this.skill = skill;
             this.createdOn = createdOn;
     }
 }

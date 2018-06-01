@@ -5,10 +5,9 @@ import { Server } from "http";
  * Module dependencies.
  */
 import app from "./app";
-import debugModule = require("debug");
 const http = require("http");
 
-const debug = debugModule("kroilonv2:server");
+import { logger } from "./config/Logger";
 
 /**
  * Get port from environment and store in Express.
@@ -75,5 +74,5 @@ function onError(error: any) {
 function onListening() {
   const addr = server.address();
   const bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
-  debug(`Listening on ${bind}`);
+  logger.info(`Listening on ${bind}`);
 }

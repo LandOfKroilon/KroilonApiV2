@@ -1,9 +1,9 @@
-import * as assert from "assert";
+import "reflect-metadata";
+import { MasterRepository } from "../../src/3domain/repositories/impl/MasterRepository";
+import { IMasterRepository } from "../../src/3domain/repositories/interfaces/IMasterRepository";
+import app from "../../src/app";
 const request = require("supertest");
 const faker = require("faker");
-import app from "../../src/app";
-import { IMasterRepository } from "../../src/3domain/repositories/interfaces/IMasterRepository";
-import { MasterRepository } from "../../src/3domain/repositories/impl/MasterRepository";
 
 const url = "/academy/admin";
 
@@ -14,26 +14,21 @@ const adminsToSeed = [
         id: faker.random.number(),
         name: faker.name.findName(),
         avatar: faker.image.avatar(),
-        email: faker.internet.email(),
-        password: faker.internet.password()
+        email: faker.internet.email()
     },
     {
         id: faker.random.number(),
         name: faker.name.findName(),
         avatar: faker.image.avatar(),
-        email: faker.internet.email(),
-        password: faker.internet.password()
+        email: faker.internet.email()
     },
     {
         id: faker.random.number(),
         name: faker.name.findName(),
         avatar: faker.image.avatar(),
-        email: faker.internet.email(),
-        password: faker.internet.password()
+        email: faker.internet.email()
     }
 ];
-
-
 
 beforeAll((done) => {
     masterRepo = new MasterRepository();
@@ -56,6 +51,16 @@ beforeAll((done) => {
     }).catch((err) => done(err));
 });
 
+afterAll((done) => {
+    masterRepo = new MasterRepository();
+    masterRepo.deleteMany()
+        .then((number) => {
+            console.log(`Deleted #${number} documents.`);
+        })
+        .catch((err) => done(err));
+});
+
+
 
 describe(url, () => {
     describe("POST", () => {
@@ -65,8 +70,7 @@ describe(url, () => {
                 id: 13471,
                 name: faker.name.findName(),
                 avatar: faker.image.avatar(),
-                email: faker.internet.email(),
-                password: "dummy1"
+                email: faker.internet.email()
             };
             const response = await request(app).post(url).send(admin);
             expect(response.statusCode).toBe(201);
@@ -78,7 +82,7 @@ describe(url, () => {
 
             expect(response.body.properties).toBeDefined();
             expect(response.body.links).toBeDefined();
-            expect(response.body.links.length).toBe(1);
+            expect(response.body.links.length).toBe(2);
 
             done();
         });
@@ -87,8 +91,7 @@ describe(url, () => {
             const admin = {
                 id: 13471,
                 name: faker.name.findName(),
-                email: faker.internet.email(),
-                password: "dummy1"
+                email: faker.internet.email()
             };
             const response = await request(app).post(url).send(admin);
             expect(response.statusCode).toBe(400);
@@ -106,8 +109,7 @@ describe(url, () => {
                 id: 13471,
                 name: faker.name.findName(),
                 avatar: faker.image.avatar(),
-                email: faker.internet.email(),
-                password: "dummy1"
+                email: faker.internet.email()
             };
             const response = await request(app).post(url).send(admin);
             expect(response.statusCode).toBe(400);
@@ -137,6 +139,39 @@ describe(url, () => {
             expect(response.body.collection.links).toBeDefined();
             expect(response.body.collection.links.length).toBe(1);
 
+            done();
+        });
+    });
+
+    describe("GET by ID", () => {
+        test("It should return a specific resource", async done => {
+
+            const response = await request(app).get(`${url}/${adminsToSeed[0].id}`);
+            expect(response.statusCode).toBe(200);
+            expect(response.type).toBe("application/vnd.siren+json");
+            expect(response.body).toBeDefined();
+
+            expect(response.body.class.length).toBe(1);
+            expect(response.body.class[0]).toBe("Admin");
+
+            expect(response.body.properties).toBeDefined();
+
+            expect(response.body.actions).toBeUndefined();
+            expect(response.body.links.length).toBe(2);
+
+            done();
+        });
+
+        test("It should return 404 error when resource with specific id is not found", async done => {
+
+            const response = await request(app).get(`${url}/inexistent_id`);
+            expect(response.statusCode).toBe(404);
+            expect(response.type).toBe("application/problem+json");
+
+            expect(response.body).toBeDefined();
+            expect(response.body.title).toBeDefined();
+            expect(response.body.status).toBeDefined();
+            expect(response.body.detail).toBeDefined();
             done();
         });
     });

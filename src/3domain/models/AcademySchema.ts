@@ -1,10 +1,13 @@
 import { Collection, Index, Instance, ObjectID, Property } from "iridium";
+import { MasterDoc } from "./MasterSchema";
 import { TraineeDoc } from "./TraineeSchema";
 
 export interface AcademyDoc {
+    _id?: string;
     name: string;
     trainees: TraineeDoc[];
-    createdOn?: Date; // TODO extract to a base class
+    masters: MasterDoc[];
+    createdOn?: number; // TODO extract to a base class
 }
 
 @Collection("academy")
@@ -16,13 +19,16 @@ export class AcademyMongoSchema extends Instance<AcademyDoc, AcademyMongoSchema>
     @Property(String, true)
     public name: string;
 
-    @Property(Array, true)
+    @Property(Array, false)
+    public masters: MasterDoc[];
+
+    @Property(Array, false)
     public trainees: TraineeDoc[];
 
-    @Property(Date, false)
-    public createdOn: Date;
+    @Property(Number, false)
+    public createdOn: number;
 
     static onCreating(doc: AcademyDoc) {
-        doc.createdOn = new Date();
+        doc.createdOn = new Date().getTime();
     }
 }

@@ -1,4 +1,4 @@
-import { Instance, Collection, Property, ObjectID, Index } from "iridium";
+import { Collection, Index, Instance, ObjectID, Property } from "iridium";
 
 
 export interface MasterDoc {
@@ -6,7 +6,7 @@ export interface MasterDoc {
     name: string;
     email: string;
     avatar: string;
-    password: string;
+    academyId?: string;
     createdOn?: Date; // TODO extract to a base class
 }
 
@@ -30,8 +30,8 @@ export class MasterMongoSchema extends Instance<MasterDoc, MasterMongoSchema> im
     @Property(String, true)
     public avatar: string;
 
-    @Property(String, true)
-    public password: string;
+    @Property(String, false)
+    public academyId: string;
 
     @Property(Date, false)
     public createdOn: Date;
