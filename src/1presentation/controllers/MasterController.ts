@@ -113,16 +113,22 @@ export class MasterController implements RegistrableController {
             const id = parseInt(req.params.id);
             this.masterService.findMaster({id})
                 .then((master) => {
+                    if (!master) {
+                        const response = Utils.handleNotFoundRequest(req.params.id);
+                        return res.status(response.status)
+                           .type(ProblemJsonMediaType)
+                           .send(response);
+                    }
                     const entity = this.buildEntity(master);
                     const selfHref = Utils.buildSelfURI(req);
                     entity.links.push(new Link("self", selfHref));
                     entity.links.push(new Link("collection",
                         `${req.protocol}://${req.hostname}:${process.env.PORT}${this.adminsResource}`));
-                    res.status(200).type(SirenMediaType).send(entity);
+                    return res.status(200).type(SirenMediaType).send(entity);
                 })
                 .catch((error) => {
                     logger.error(error);
-                    return res.status(400).send(error);
+                    res.send(error);
                 });
         };
     }
@@ -145,6 +151,7 @@ export class MasterController implements RegistrableController {
         item.data.push(new Data("name", master.name, "Admin's name"));
         item.data.push(new Data("avatar", master.avatar, "Admin's avatar uri"));
         item.data.push(new Data("email", master.email, "Admin's email"));
+        item.data.push(new Data("academyId", master.academyId, "Admin's active academy id"));
         item.data.push(new Data("createdOn", master.createdOn.toLocaleDateString(), "When the admin was created"));
         return item;
     }

@@ -29,7 +29,41 @@ Navigate to `_http://localhost:3000_`
 `npm run build && npm run test`
 
 
-## Example of responses for the respective media type
+### Current active academy resource representation
+
+```json
+{
+    "links": [
+        {
+            "rel": [
+                "self"
+            ],
+            "href": "http://localhost:3000/academy"
+        }
+    ],
+    "class": [
+        "Academy"
+    ],
+    "properties": {
+        "name": "Academia de Julho",
+        "trainees": [
+            {
+                "id": 22389,
+                "name": "Pedro Almeida",
+                "avatar": "/photos/avatar",
+                "email": "pedro@mail.me",
+                "hash": "jir8u47ruf8430l",
+                "profile": "unknown",
+                "businessUnit": "unknown",
+                "skill": {},
+                "createdOn": 1527845472900
+            }
+        ],
+        "masters": [],
+        "createdOn": 1527845472900
+    }
+}
+```
 
 ### Collection of Admins resource representation
 
@@ -113,5 +147,17 @@ Navigate to `_http://localhost:3000_`
         "password": "hash",
         "createdOn": "2018-05-04T19:44:55.234Z"
     }
+}
+```
+
+### Error representation with _application/problem+json_
+
+```json
+{
+    "status": 404,
+    "type": "about:blank",
+    "title": "/probs/resource-not-found",
+    "detail": "Resource not found",
+    "instance": "Resource with id Pedro could not be found"
 }
 ```

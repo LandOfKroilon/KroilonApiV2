@@ -1,0 +1,1 @@
+{"version":3,"file":"AcademyDTO.js","sourceRoot":"","sources":["../../../src/2application/dto/AcademyDTO.ts"],"names":[],"mappings":";;AAIA;IAMI,YAAY,IAAY,EAAE,QAAsB,EAAE,OAAoB,EAAE,SAAiB;QACrF,IAAI,CAAC,IAAI,GAAG,IAAI,CAAC;QACjB,IAAI,CAAC,QAAQ,GAAG,QAAQ,CAAC;QACzB,IAAI,CAAC,OAAO,GAAG,OAAO,CAAC;QACvB,IAAI,CAAC,SAAS,GAAG,SAAS,CAAC;IAC/B,CAAC;CACJ;AAZD,gCAYC"}

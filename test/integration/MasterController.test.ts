@@ -14,22 +14,19 @@ const adminsToSeed = [
         id: faker.random.number(),
         name: faker.name.findName(),
         avatar: faker.image.avatar(),
-        email: faker.internet.email(),
-        password: faker.internet.password()
+        email: faker.internet.email()
     },
     {
         id: faker.random.number(),
         name: faker.name.findName(),
         avatar: faker.image.avatar(),
-        email: faker.internet.email(),
-        password: faker.internet.password()
+        email: faker.internet.email()
     },
     {
         id: faker.random.number(),
         name: faker.name.findName(),
         avatar: faker.image.avatar(),
-        email: faker.internet.email(),
-        password: faker.internet.password()
+        email: faker.internet.email()
     }
 ];
 
@@ -54,6 +51,16 @@ beforeAll((done) => {
     }).catch((err) => done(err));
 });
 
+afterAll((done) => {
+    masterRepo = new MasterRepository();
+    masterRepo.deleteMany()
+        .then((number) => {
+            console.log(`Deleted #${number} documents.`);
+        })
+        .catch((err) => done(err));
+});
+
+
 
 describe(url, () => {
     describe("POST", () => {
@@ -63,8 +70,7 @@ describe(url, () => {
                 id: 13471,
                 name: faker.name.findName(),
                 avatar: faker.image.avatar(),
-                email: faker.internet.email(),
-                password: "dummy1"
+                email: faker.internet.email()
             };
             const response = await request(app).post(url).send(admin);
             expect(response.statusCode).toBe(201);
@@ -85,8 +91,7 @@ describe(url, () => {
             const admin = {
                 id: 13471,
                 name: faker.name.findName(),
-                email: faker.internet.email(),
-                password: "dummy1"
+                email: faker.internet.email()
             };
             const response = await request(app).post(url).send(admin);
             expect(response.statusCode).toBe(400);
@@ -104,8 +109,7 @@ describe(url, () => {
                 id: 13471,
                 name: faker.name.findName(),
                 avatar: faker.image.avatar(),
-                email: faker.internet.email(),
-                password: "dummy1"
+                email: faker.internet.email()
             };
             const response = await request(app).post(url).send(admin);
             expect(response.statusCode).toBe(400);
@@ -155,6 +159,19 @@ describe(url, () => {
             expect(response.body.actions).toBeUndefined();
             expect(response.body.links.length).toBe(2);
 
+            done();
+        });
+
+        test("It should return 404 error when resource with specific id is not found", async done => {
+
+            const response = await request(app).get(`${url}/inexistent_id`);
+            expect(response.statusCode).toBe(404);
+            expect(response.type).toBe("application/problem+json");
+
+            expect(response.body).toBeDefined();
+            expect(response.body.title).toBeDefined();
+            expect(response.body.status).toBeDefined();
+            expect(response.body.detail).toBeDefined();
             done();
         });
     });

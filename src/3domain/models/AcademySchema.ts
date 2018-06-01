@@ -1,9 +1,12 @@
 import { Collection, Index, Instance, ObjectID, Property } from "iridium";
+import { MasterDoc } from "./MasterSchema";
 import { TraineeDoc } from "./TraineeSchema";
 
 export interface AcademyDoc {
+    _id?: string;
     name: string;
     trainees: TraineeDoc[];
+    masters: MasterDoc[];
     createdOn?: number; // TODO extract to a base class
 }
 
@@ -16,7 +19,10 @@ export class AcademyMongoSchema extends Instance<AcademyDoc, AcademyMongoSchema>
     @Property(String, true)
     public name: string;
 
-    @Property(Array, true)
+    @Property(Array, false)
+    public masters: MasterDoc[];
+
+    @Property(Array, false)
     public trainees: TraineeDoc[];
 
     @Property(Number, false)

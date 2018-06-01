@@ -13,7 +13,6 @@ import { RegistrableController } from "./RegistrableController";
 @injectable()
 export class AcademyController implements RegistrableController {
 
-
     @inject(TYPES.AcademyService)
     private academyService: IAcademyService;
 
@@ -24,27 +23,48 @@ export class AcademyController implements RegistrableController {
     register(app: express.Application): void {
         app.route("/academy")
             .get(this.handleGetAcademy())
+            .patch(this.handleUpdateAcademy())
             .post(this.handleCreateAcademy());
 
         app.route("/academy/:name")
             .get(this.handleGetAcademyByName());
 
-        app.route("/academy/sessionpoints")
-            .get(async (_: express.Request, __: express.Response) => {});
-
-        app.route("/academy/trainees")
-            .get(async (_: express.Request, __: express.Response) => {});
-
-        app.route("/academy/config/story")
-            .get(async (_: express.Request, __: express.Response) => {})
-
-            .post(async (_: express.Request, __: express.Response) => {});
     }
 
-    /**
-     * Method to handle the GET request to the uri "/academy".
-     * It returns the most.
-     */
+
+private handleUpdateAcademy(): express.RequestHandler {
+    return async (req: express.Request, res: express.Response) => {
+
+        if (Object.keys(req.body).length === 0) {
+            const response = Utils.handleEmptyRequest();
+            res.status(response.status)
+               .type(ProblemJsonMediaType)
+               .send(response);
+            return;
+        }
+
+        this.academyService.updateAcademy(req.body)
+            .then((updatedRows) => {
+                console.log(updatedRows);
+                return res.status(200).send();
+            })
+            .catch((err) => {
+
+                if (err.isIvalidationError) {
+                    const response = new Problem(
+                        400,
+                        "/probs/defined-non-value",
+                        "Some property is null or contains some unexpected value",
+                        err.messages[0]);
+                    res.status(400).type(ProblemJsonMediaType).send(response);
+                    return;
+                }
+
+                res.status(500).send(err);
+            });
+    };
+}
+
     private handleGetAcademy(): express.RequestHandler {
         return async (req: express.Request, res: express.Response) => {
 
@@ -144,7 +164,5 @@ export class AcademyController implements RegistrableController {
         entity.properties = doc;
         return entity;
     }
-
-
 
 }

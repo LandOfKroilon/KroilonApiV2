@@ -26,13 +26,13 @@ export class MasterRepository implements IMasterRepository {
     }
 
     async findAll(): Promise<MasterDoc[]> {
-        const masterDTOs: MasterDoc[] = await kroilonDatabase.connect()
+        return await kroilonDatabase.connect()
             .then(() => kroilonDatabase.Masters.find().toArray())
+            .then((docs) => docs)
             .catch((_) => {
                 // log err
                 return [];
             });
-        return masterDTOs;
     }
 
 }

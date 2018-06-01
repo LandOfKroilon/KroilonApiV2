@@ -11,11 +11,14 @@ export class AcademyRepository implements IAcademyRepository {
     async findAll(): Promise<AcademyDoc[]> {
         const masterDTOs: AcademyDoc[] = await kroilonDatabase.connect()
             .then(() => kroilonDatabase.Academy.find().toArray())
-            .catch((_) => {
-                // log err
-                return [];
-            });
+            .catch((err) => { throw err; });
         return masterDTOs;
+    }
+
+    async getCurrentAcademyId(): Promise<number> {
+        return await this.getCurrentAcademy()
+            .then((doc) => doc._id)
+            .catch((err) => { return err; });
     }
 
     async deleteMany(conditions?: Object): Promise<number> {
@@ -33,6 +36,12 @@ export class AcademyRepository implements IAcademyRepository {
     async create(doc: AcademyDoc): Promise<AcademyDoc> {
         return await kroilonDatabase.connect()
             .then(() => kroilonDatabase.Academy.create(doc))
+            .catch((err) => { throw err; });
+    }
+
+    async update(doc: AcademyDoc): Promise<number> {
+        return await kroilonDatabase.connect()
+            .then(() => kroilonDatabase.Academy.update({name: doc.name}, doc))
             .catch((err) => { throw err; });
     }
 

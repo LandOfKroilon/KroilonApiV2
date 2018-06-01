@@ -1,15 +1,23 @@
-import { IMasterService } from "../interfaces/IMasterService";
-import { injectable, inject } from "inversify";
-import TYPES from "../../config/types";
+import { inject, injectable } from "inversify";
 import { MasterDoc } from "../../3domain/models/MasterSchema";
+import { IAcademyRepository } from "../../3domain/repositories/interfaces/IAcademyRepository";
 import { IMasterRepository } from "../../3domain/repositories/interfaces/IMasterRepository";
+import TYPES from "../../config/types";
 import { MasterDTO } from "../dto/MasterDTO";
+import { IAcademyService } from "../interfaces/IAcademyService";
+import { IMasterService } from "../interfaces/IMasterService";
 
 @injectable()
 export class MasterService implements IMasterService {
 
     @inject(TYPES.MasterRepository)
     private masterRepository: IMasterRepository;
+
+    @inject(TYPES.AcademyRepository)
+    private academyRepository: IAcademyRepository;
+
+    @inject(TYPES.AcademyService)
+    private academySvc: IAcademyService;
 
     getMasters(): Promise<Array<MasterDTO>> {
         return this.masterRepository.findAll()
@@ -23,12 +31,9 @@ export class MasterService implements IMasterService {
     findMaster(conditions: Object = {}): Promise<MasterDTO> {
         return this.masterRepository.findOne(conditions)
             .then((doc) => {
-                if (doc) {
-                    return doc;
-                }
-                throw new Error("document not found");
+                return doc != undefined ? this.toDTO(doc) : undefined;
             })
-            .catch((err) => { throw err; } );
+            .catch((err) => { throw err; });
     }
 
     createMaster(content: MasterDTO): Promise<MasterDTO> {
@@ -38,16 +43,26 @@ export class MasterService implements IMasterService {
                     throw new Error("Document already present");
                 }
             })
-            .then(() => this.masterRepository.create({
+            .then(() => this.academyRepository.getCurrentAcademyId())
+            .then((acadId) => this.masterRepository.create({
                     id: content.id,
                     name: content.name,
                     email: content.email,
                     avatar: content.avatar,
-                    password: content.password
-                })
-                .then((m) => this.toDTO(m))
-                .catch((err) => { throw err; }))
-            .catch((err) => { throw err; } );
+                    academyId: `${acadId}`
+                }))
+            .then(async (m) => {
+
+                await this.academySvc.updateAcademy({
+                    name: "",
+                    trainees: [],
+                    masters: [m]
+                });
+
+                return m;
+            })
+            .then((m) => this.toDTO(m))
+            .catch((err) => { throw err; });
     }
 
     private toDTO(masterDTO: MasterDoc): MasterDTO {
@@ -56,7 +71,7 @@ export class MasterService implements IMasterService {
             masterDTO.name,
             masterDTO.email,
             masterDTO.avatar,
-            masterDTO.password,
+            masterDTO.academyId,
             masterDTO.createdOn);
     }
 

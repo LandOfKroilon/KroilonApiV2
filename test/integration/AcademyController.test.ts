@@ -49,6 +49,15 @@ beforeAll((done) => {
     }).catch((err) => done(err));
 });
 
+afterAll((done) => {
+    academyRepo = new AcademyRepository();
+    academyRepo.deleteMany()
+        .then((number) => {
+            console.log(`Deleted #${number} documents.`);
+        })
+        .catch((err) => done(err));
+});
+
 describe(url, () => {
     describe("GET", () => {
         test("it should obtain the most recent resource", async done => {
@@ -189,3 +198,43 @@ describe(url, () => {
     });
 });
 
+
+describe(url, () => {
+    describe("PATCH", () => {
+        test("it should be possible to update the current academy", async done => {
+
+            const academy = {
+                name: "this_will_not_be_updated",
+                trainees: [],
+                masters: [{
+                    id: faker.random.number(),
+                    name: faker.name.findName(),
+                    avatar: faker.image.avatar(),
+                    email: faker.internet.email()
+                  }
+                ]
+            };
+
+            const response = await request(app).post(url).send(academy);
+            expect(response.statusCode).toBe(201);
+            expect(response.type).toBe("application/vnd.siren+json");
+
+            expect(response.body).toBeDefined();
+
+            expect(response.body.class.length).toBe(1);
+            expect(response.body.class[0]).toBe("Academy");
+
+            expect(response.body.properties).toBeDefined();
+            expect(response.body.properties.name).toBe(academy.name);
+            expect(response.body.properties.trainees.length).toBeGreaterThanOrEqual(0);
+            expect(response.body.properties.masters.length).toBe(1);
+            expect(response.body.properties.createdOn).toBeDefined();
+
+            expect(response.body.actions).toBeUndefined();
+            expect(response.body.links.length).toBe(1);
+
+            done();
+        });
+
+    });
+});
